@@ -17,13 +17,13 @@ if(isset($_SESSION['user'])){?>
                 <input type="button" id="ruleofgame" class="button" value="Rules of games" style="background-color:white;" onclick="window.location.href='rule.php'">
                 <input type="button" id="scorecard" class="button" value="Score card" style="background-color:#F2E9E4;" onclick="window.location.href='score.php'">
                 <input type="button" id="log-sign" class="button" value="Login/Signup" onclick="window.location.href='signup.php'">
-                <img src="profile.png" alt="profile" id="profile" onclick="window.location.href='Profile.php'">
+                <img src="images/profile.png" alt="profile" id="profile" onclick="window.location.href='Profile.php'">
             </div>
         </div>
     </header>
     <content>
         <div class="head">
-            <div id="div-logo"><img src="logo.jpeg" alt="logo" id="logo"></div>
+            <div id="div-logo"><img src="images/logo.jpeg" alt="logo" id="logo"></div>
             <div id="topic">Rules of the game : </div>
         </div>
         <div id="rule">
