@@ -19,7 +19,7 @@ if(isset($_SESSION['user'])){?>
                 <input type="button" id="ruleofgame" class="button" value="Rules of games" style="background-color:#F2E9E4;" onclick="window.location.href='rules.php'">
                 <input type="button" id="scorecard" class="button" value="Score card" style="background-color:#F2E9E4;" onclick="window.location.href='scorecard.php'">
                 <input type="button" id="log-sign" class="button" value="Login/Signup">
-                <img src="profile.png" alt="profile" id="profile" onclick="window.location.href='Profile.php'">
+                <img src="images/profile.png" alt="profile" id="profile" onclick="window.location.href='Profile.php'">
             </div>
         </div>
     </header>
@@ -54,7 +54,7 @@ if(isset($_SESSION['user'])){?>
                 <button class="box" id="box8"  onclick="boxclick('8');"></button>
             </div>
             <div id="player2">
-                <img src="profilefemale.png" alt="play1" id="play2">
+                <img src="images/profilefemale.png" alt="play1" id="play2">
                 <div id="play2_name"> </div>
                 <div>
                     match record:<br>

@@ -15,15 +15,15 @@
                 <input type="button" id="ruleofgame" class="button" value="Rules of games" style="background-color:#F2E9E4;" onclick="window.location.href='rules.html'">
                 <input type="button" id="scorecard" class="button" value="Score card" style="background-color:#F2E9E4;" onclick="window.location.href='scorecard.html'">
                 <input type="button" id="log-sign" class="button" value="Login/Signup">
-                <img src="profile.png" alt="profile" id="profile" onclick="window.location.href='scorecard.html'">
+                <img src="images/profile.png" alt="profile" id="profile" onclick="window.location.href='scorecard.html'">
             </div>
         </div>
     </header>
     <content>
         <div class="head">
-            <div id="div-logo"><img src="logo.jpeg" alt="logo" id="logo"></div>
+            <div id="div-logo"><img src="images/logo.jpeg" alt="logo" id="logo"></div>
             <div id="topic">Profile:</div>
-            <div id="profilepic"><img src="profilemale.png" alt="profile pic" id="malepic"></div>
+            <div id="profilepic"><img src="images/profilemale.png" alt="profile pic" id="malepic"></div>
         </div>
         <table id="frm-table">
             <tr>

@@ -12,26 +12,29 @@ if(isset($_SESSION['user'])){?>
       href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
     />
   </head>
+
   <body>
     <header>
       <nav class="navigation">
         <a class="current-page">Home</a>
         <a href="rule.php">Game Rules</a>
-        <a href="score.php">Scorecard</a>
-        
+        <a href="score.php">Scorecard</a> 
       </nav>
+
       <a href="profile.php" class="profile-container">
-          <img src="profile.png" alt="profile" id="profile">
-        </a>
+          <img src="images/profile.png" alt="profile" id="profile">
+      </a>
     </header>
 
+    
     <div class="middle">
+      <h1 class="headings" style="padding: 2rem 0rem 0rem 0rem">ABOUT</h1>
       <div class="home">
         <div id="logo">
-          <img src="logo.jpeg" alt="tic tac toe" />
+          <img src="images/logo.jpeg" alt="tic tac toe" />
         </div>
+
         <div class="about">
-          <h1>ABOUT</h1>
           <p>
             Nostalgic gaming online is a website brings the joy of classic games
             like Tic Tac Toe and more to your fingertips. Enjoy a nostalic
@@ -41,32 +44,44 @@ if(isset($_SESSION['user'])){?>
           </p>
         </div>
       </div>
-      <hr />
-      <h1>Our Games:</h1>
-      <div class="ourgame">
-        <div class="heart" ><img src="heart.svg" alt="heart">
-        </div>
-        <div class="ttt">
-          <div id="Img">
-            <img src="tictactoe.png" alt="tic tac toe" />
-          </div>
-          <div class="content">
-            <h3>Tic-Tac-Toe</h3>
-            <p>
+      <hr/>
+
+      <h1 class="headings" style="justify-self: center;">Our Games</h1>
+      <div class="ourgames">
+        <div class="tictactoe-main-content">
+          <div class="tictactoe">
+            <div id="Img">
+              <img src="images/tictactoe.png" alt="tic tac toe" />
+            </div>
+          
+            <div class="content">
+              <h3 class="headings">Tic-Tac-Toe</h3>
+              <p>
                 Tic Tac toe is a classic strategy game for two players. Played on a
                 3x3 grid, players take turns marking squares with "X" or "0". The
                 first player to get three of their marks in a row(horizontally,
                 vertically, or diagonally) wins! <br />
               </p>
-              <div class="button">
-                <button><a href="game.php" style="color:white;">PLAY NOW</a></button>
-                <button><a href="score.php" style="color:white;">PAST SCORE</a></button>
-              </div>
+            </div> 
+          </div>
+
+          <div class="buttons">
+            <a href="game.php" class="button">
+              PLAY NOW
+            </a>
+            <a href="score.php" class="button">
+              PAST SCORES
+            </a>
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="fotter"></div>
+
+
+    <div class="fotter">
+
+    </div>
   </body>
 </html>
 <?php } else { 
