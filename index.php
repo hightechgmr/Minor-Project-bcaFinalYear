@@ -14,13 +14,13 @@
     <div class="header">
       <div class="top"></div>
       <div class="navbar">
-        <input type="button" name="about" id="about" value="ABOUT" style="background-color:white;" />
+        <input type="button" name="about" id="about" value="About" style="background-color:white;" />
         <input type="button" name="rules" id="rules" value="Rules of Games" onclick="window.location.href='signup.php'"/>
         <input type="button" name="score" id="score" value="Score card " onclick="window.location.href='signup.php'" />
-        <input type="button" name="lsin" id="lsin" value="Login/Sinup " onclick="window.location.href='signup.php'"/>
-        <img src="profile.png" alt="">
       </div>
     </div>
+
+
     <div class="middle">
       <div class="home">
         <div id="logo">
@@ -29,7 +29,7 @@
         <div class="about">
           <h1>ABOUT</h1>
           <p>
-            Nostslic gaming online is a website brings the joy of classic games
+            Nostalgic gaming online is a website brings the joy of classic games
             like Tic Tac Toe and more to your fingertips. Enjoy a nostalic
             experience with a mordern, user -friendly platform. Stay tuned for
             even more games to come! initially we have tic tac toe but many more
