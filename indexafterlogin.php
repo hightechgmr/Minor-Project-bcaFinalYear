@@ -13,16 +13,18 @@ if(isset($_SESSION['user'])){?>
     />
   </head>
   <body>
-    <div class="header">
-      <div class="top"></div>
-      <div class="navbar">
-        <input type="button" name="about" id="about" value="ABOUT" style="background-color:white;" />
-        <input type="button" name="rules" id="rules" value="Rules of Games" onclick="window.location.href='rule.php'"/>
-        <input type="button" name="score" id="score" value="Score card " onclick="window.location.href='score.php'" />
-        <input type="button" name="lsin" id="lsin" value="Login/Sinup " onclick="window.location.href='signup.php'"/>
-        <img src="profile.png" alt="profile" id="profile" onclick="window.location.href='Profile.php'">
-      </div>
-    </div>
+    <header>
+      <nav class="navigation">
+        <a class="current-page">Home</a>
+        <a href="rule.php">Game Rules</a>
+        <a href="score.php">Scorecard</a>
+        
+      </nav>
+      <a href="profile.php" class="profile-container">
+          <img src="profile.png" alt="profile" id="profile">
+        </a>
+    </header>
+
     <div class="middle">
       <div class="home">
         <div id="logo">
@@ -31,7 +33,7 @@ if(isset($_SESSION['user'])){?>
         <div class="about">
           <h1>ABOUT</h1>
           <p>
-            Nostslic gaming online is a website brings the joy of classic games
+            Nostalgic gaming online is a website brings the joy of classic games
             like Tic Tac Toe and more to your fingertips. Enjoy a nostalic
             experience with a mordern, user -friendly platform. Stay tuned for
             even more games to come! initially we have tic tac toe but many more
