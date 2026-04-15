@@ -48,7 +48,7 @@
             </tr>
         </table>
         <div id="rmv">
-            <input type="button"  id="rmvacc" value="Log Out">
+            <input type="button" id="rmvacc" value="Log Out">
         </div>
             
     </content>
