@@ -36,7 +36,25 @@ if(isset($_SESSION['user'])){?>
                 <th>Lost</th>
                 <th>Against</th>
             </tr>
-            <tr></tr>
+            <tr><?php
+$conn = mysqli_connect("localhost", "root", "", "tictactoe");
+
+$query = "SELECT * FROM scorecard";
+$result = mysqli_query($conn, $query);
+
+$i = 1;
+while($row = mysqli_fetch_assoc($result)) {
+    echo "<tr>
+            <td>".$i++."</td>
+            <td>".$row['game_name']."</td>
+            <td>".$row['user_name']."</td>
+            <td>".$row['total_matches']."</td>
+            <td>".$row['won']."</td>
+            <td>".$row['lost']."</td>
+            <td>".$row['against']."</td>
+          </tr>";
+}
+?></tr>
         </table> 
     </content>
     <footer id="footer">
