@@ -8,118 +8,146 @@ body{
     opacity:83%;
 }
 
-/* header */
-    /*top border */
-
-.border{
-    height:50px;
-    width:100%;
-    background-color:#22223B;
-}
-
-    /* navbar */
-.navbar{
-    height:100px;
-    background-color:#4A4E69;
-    width:100%;
-}
-.button{
-    background-color:#F2E9E4;
-    border:2px solid black;
-    border-radius:10px;
-    font-size:1.5rem;
-    font-weight: bold;
-    height:50px;
-    width:200px;
+header{
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-left:100px;
-    margin-top:25px;
-    filter:drop-shadow(5px 5px 5px #000000);
+    background-color: #4A4E69;
+}
+
+.navigation{
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+     
+     height:7rem;
+     background-color:#4A4E69;
+     width:100%;
+}
+
+nav a{
+     background-color:#F2E9E4;
+
+     border:0.125rem solid black;
+     border-radius:0.625rem;
+     text-decoration: none;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+     font-size:1rem;
+     font-weight: bold;
+     color: #000000;
+    
+     height:3.125rem;
+     width:11.25rem;
+     
+    filter:drop-shadow(0.313rem 0.313rem 0.313rem #212121);
+}
+
+.current-page{
+    background-color: white;
+    filter:drop-shadow(0.313rem 0.313rem 0.313rem #000000);
+    border:0rem solid black;
+
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+nav a:hover{
+    background-color: white;
+    filter:drop-shadow(0.313rem 0.313rem 0.313rem #000000);
+    border:0rem solid black;
+
 }
 
 #profile{
-    align-items: center;
-    float:right;
-    margin-top:10px;
-    margin-right:100px;
-    filter:drop-shadow(5px 5px 5px #000000);
+    max-height: 3.5rem;
+    border-radius: 100%;
+    padding: 1rem;
 }
 
-/* content */
-    /* logo */
+.content{
+    display: flex;
+    flex-direction: column;
+}
+
 .head{
     display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2rem 0rem;
 }
+
 #logo{
-    height:250px;
-    width:250px;
+    width: 16rem;
     border-radius:50%;
-    margin:50px 0px 50px 50px;
-    border:2px solid white;
-    box-shadow:10px 10px 10px #000000,-10px 10px 10px #000000;
+    border:0.125rem solid white;
+    box-shadow:0.625rem 0.625rem 0.625rem #000000,-0.625rem 0.625rem 0.625rem #000000;
 }
 #topic{
     font-size:5rem;
-    font-weight: bold;
-    margin:120px 50px 100px 150px;
-    text-decoration:underline;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-    /* rules */
+
 #rule{
-    height:1000px;
-    width:1500px;
-    margin:auto;
-    margin-top:100px;
-    margin-bottom:200px;
+    align-self: center;
+    width: 75%;
+    
+    padding: 1rem 4rem;
+
     background-color:#9A8C98;
-    box-shadow:10px 10px 10px #000000,-10px 10px 10px #000000;
-    border:4px solid black;
+    box-shadow:0.625rem 0.625rem 0.625rem #000000,-0.625rem 0.625rem 0.625rem #000000;
+    border: 0.25rem solid #333c78;
 }
 
-#name{
-    font-size:4rem;
-    font-weight: bold;
-    text-decoration:underline;
-    color:white;
-    margin:50px 0px 50px 50px;
-}
-#playnow{
-    background-color:#4A4E69;
-    color: white;
-    margin:50px 100px 50px 50px;
-    height:80px;
-    font-size:2rem;
-}
-#playnow:hover{
-    border:4px solid rgb(26, 160, 26);
-}
+
 .head-content{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 }
+
+.headings{
+    font-size: 4rem;
+    font-weight: bolder;
+    color: white;
+    text-align: center;
+    padding-bottom: 0.5rem;
+}
+
+.playnow{
+
+    border: 0.125rem solid white;
+    background-color:#4A4E69;
+    color: white;
+    
+    border-radius: 100rem;
+    font-size:1.5rem;
+    font-weight: bold;
+
+    text-decoration: none;
+    padding: 1rem;
+}
+.playnow:hover{
+    border:4px solid rgb(0, 255, 0);
+}
+
 #cont,ul,li,b{
-    margin-left:50px;
-    margin-right:50px;
     font-size:1.8rem;
     color: white;
 }
-.rulescontent{
-    margin-top:40px;
-}
 
-
-/* footer */
-    /* bottom-border */
-#footer{
-    position: fixed;
-    height:50px;
+.fotter{
+    position: sticky;
+    height:3.8rem;
     left:0;
     bottom:0;
     width:100%;
     background-color:#22223B;
 }
-
 
 
 

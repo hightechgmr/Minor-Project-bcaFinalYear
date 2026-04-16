@@ -48,12 +48,13 @@
             </tr>
         </table>
         <div id="rmv">
-            <input type="button"  id="rmvacc" value="Log Out">
+            <input type="button" id="rmvacc" value="logout">
         </div>
             
     </content>
     <footer id="footer">
         <div></div>
     </footer>
+
 </body>
 </html>
