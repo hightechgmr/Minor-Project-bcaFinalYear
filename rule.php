@@ -10,27 +10,35 @@ if(isset($_SESSION['user'])){?>
 </head>
 <body>
     <header>
-        <div class="border"></div>
-        <div class="navbar">
-            <div class="buttons">
-                <input type="button" id="about" class="button" value="About" onclick="window.location.href='indexafterlogin.php'">
-                <input type="button" id="ruleofgame" class="button" value="Rules of games" style="background-color:white;" onclick="window.location.href='rule.php'">
-                <input type="button" id="scorecard" class="button" value="Score card" style="background-color:#F2E9E4;" onclick="window.location.href='score.php'">
-                <input type="button" id="log-sign" class="button" value="Login/Signup" onclick="window.location.href='signup.php'">
-                <img src="images/profile.png" alt="profile" id="profile" onclick="window.location.href='Profile.php'">
+      <nav class="navigation">
+        <a href="index.php">Home</a>
+        <a class="current-page">Game Rules</a>
+        <a href="score.php">Scorecard</a> 
+      </nav>
+
+      <a href="profile.php" class="profile-container">
+          <img src="images/profile.png" alt="profile" id="profile">
+      </a>
+    </header>
+
+
+    <content class="content">
+        <div class="head">
+            <div id="topic">Game Rules: </div>
+            <div id="div-logo">
+                <img src="images/logo.jpeg" alt="logo" id="logo">
             </div>
         </div>
-    </header>
-    <content>
-        <div class="head">
-            <div id="div-logo"><img src="images/logo.jpeg" alt="logo" id="logo"></div>
-            <div id="topic">Rules of the game : </div>
-        </div>
+
         <div id="rule">
             <div class="head-content">
-                <div id="name">Tic-Tac-Toe</div>
-                <div id="button-head"><input type="button" id="playnow" class="button" value="Play Now" onclick="window.location.href='Game.php'"></div>
+                <div class="headings">Tic-Tac-Toe</div>
+
+                <a href="Game.php" class="playnow">
+                    Play Now
+                </a>
             </div>
+
             <p class="rulescontent">
                 <b>Players:</b><br><p id="cont">Two players</p><br>
                 <b>Objective:</b><br><p id="cont">Be the first player to get three of your marks (X or O) in a row, horizontally, vertically, or diagonally.</p><br>
@@ -50,8 +58,10 @@ if(isset($_SESSION['user'])){?>
             </p>
         </div>
     </content>
-    <footer id="footer">
-        <div></div>
+
+
+    <footer class="fotter">
+
     </footer>
 </body>
 </html> 
