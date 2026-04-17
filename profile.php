@@ -15,19 +15,19 @@
       </nav>    
     </header>
 
-    <content>
-        <div class="head">
-            <div id="div-logo">
-                <img src="images/logo.jpeg" alt="logo" id="logo">
-            </div>
-            <div id="topic">Profile:</div>
+    <content class="content">
+        <div class="head2">
             <div id="profilepic">
                 <img src="images/profilemale.png" alt="profile pic" id="malepic">
             </div>
+            <div class="headings" style="color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> Profile </div>
         </div>
+
+
         <table id="frm-table">
             <tr>
-                <td>User Name:</td>
+                <td>Username:</td>
                 <td><input type="text" id="usrnm"></td>
             </tr>
             <tr>
@@ -47,10 +47,14 @@
                 <td><input type="text" id="lost"></td>
             </tr>
         </table>
+
         <div id="rmv">
-            <input type="button" id="rmvacc" value="logout">
+            <input type="button" id="rmvacc" value="Log Out">
         </div>
             
+        <div id="div-logo">
+                <img src="images/logo.jpeg" alt="logo" id="logo2">
+            </div>
     </content>
 
     <footer class="fotter">
