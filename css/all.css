@@ -225,16 +225,16 @@ nav a:hover{
     border: solid black;
     border-collapse: collapse;
 }
-tr{
+#frm-table tr{
     
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-td{
+#frm-table td{
     padding: 2rem;
 }
-td input{
+#frm-table td input{
     height:4rem;
     width: 20rem;
     min-width: fit-content;
@@ -243,7 +243,7 @@ td input{
     border-radius:0.8rem;
 }
 
-td input:hover{
+#frm-table td input:hover{
     border: 0.125rem solid #f9f9fc;
 }
 
