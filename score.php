@@ -10,55 +10,58 @@ if(isset($_SESSION['user'])){?>
 </head>
 <body>
     <header>
-        <div class="border"></div>
-        <div class="navbar">
-            <div class="buttons">
-                <input type="button" id="about" class="button" value="About" onclick="window.location.href='indexafterlogin.php'">
-                <input type="button" id="ruleofgame" class="button" value="Rules of games" style="background-color:#F2E9E4;" onclick="window.location.href='rule.php'">
-                <input type="button" id="scorecard" class="button" value="Score card" onclick="window.location.href='score.php'">
-                <input type="button" id="log-sign" class="button" value="Login/Signup" onclick="window.location.href='signup.php'">
-                <img src="images/profile.png" alt="profile" id="profile" onclick="window.location.href='Profile.php'">
-            </div>
-        </div>
+      <nav class="navigation">
+        <a href="index.php">Home</a>
+        <a href="rule.php">Game Rules</a>
+        <a class="current-page">Scorecard</a>
+      </nav>
+
+      <a href="profile.php" class="profile-container">
+          <img src="images/profile.png" alt="profile" id="profile">
+      </a>
     </header>
-    <content>
+
+    <content class="content">
         <div class="head">
-            <div id="div-logo"><img src="images/logo.jpeg" alt="logo" id="logo"></div>
-            <div id="topic">Score Card:</div>
+            <div class="headings" style="color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">ScoreCard:</div>
         </div>
+
         <table id="table">
             <tr>
                 <th>S.No.</th>
-                <th>Game_name</th>
-                <th>User_Name</th>
+                <th>Game Name</th>
+                <th>Username</th>
                 <th>Total Matches</th>
-                <th>won</th>
+                <th>Won</th>
                 <th>Lost</th>
-                <th>Against</th>
+                <th>Opponent</th>
             </tr>
-            <tr><?php
-$conn = mysqli_connect("localhost", "root", "", "tictactoe");
 
-$query = "SELECT * FROM scorecard";
-$result = mysqli_query($conn, $query);
+            <?php
+                $conn = mysqli_connect("localhost", "root", "", "tictactoe");
 
-$i = 1;
-while($row = mysqli_fetch_assoc($result)) {
-    echo "<tr>
-            <td>".$i++."</td>
-            <td>".$row['game_name']."</td>
-            <td>".$row['user_name']."</td>
-            <td>".$row['total_matches']."</td>
-            <td>".$row['won']."</td>
-            <td>".$row['lost']."</td>
-            <td>".$row['against']."</td>
-          </tr>";
-}
-?></tr>
+                $query = "SELECT * FROM scorecard";
+                $result = mysqli_query($conn, $query);
+
+                $i = 1;
+                while($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr class='gentable'>
+                    <td>".$i++."</td>
+                    <td>".$row['game_name']."</td>
+                    <td>".$row['user_name']."</td>
+                    <td>".$row['total_matches']."</td>
+                    <td>".$row['won']."</td>
+                    <td>".$row['lost']."</td>
+                    <td>".$row['against']."</td>
+                    </tr>";
+                }
+            ?>
         </table> 
     </content>
-    <footer id="footer">
-        <div></div>
+
+    
+    <footer class="fotter">
     </footer>
 </body>
 </html>
