@@ -8,22 +8,22 @@
 </head>
 <body>
     <header>
-        <div class="border"></div>
-        <div class="navbar">
-            <div class="buttons">
-                <input type="button" id="about" class="button" value="About">
-                <input type="button" id="ruleofgame" class="button" value="Rules of games" style="background-color:#F2E9E4;" onclick="window.location.href='rules.html'">
-                <input type="button" id="scorecard" class="button" value="Score card" style="background-color:#F2E9E4;" onclick="window.location.href='scorecard.html'">
-                <input type="button" id="log-sign" class="button" value="Login/Signup">
-                <img src="images/profile.png" alt="profile" id="profile" onclick="window.location.href='scorecard.html'">
-            </div>
-        </div>
+      <nav class="navigation">
+        <a href="indexafterlogin.php">Home</a>
+        <a href="rule.php">Game Rules</a>
+        <a href="score.php">Scorecard</a> 
+      </nav>    
     </header>
+
     <content>
         <div class="head">
-            <div id="div-logo"><img src="images/logo.jpeg" alt="logo" id="logo"></div>
+            <div id="div-logo">
+                <img src="images/logo.jpeg" alt="logo" id="logo">
+            </div>
             <div id="topic">Profile:</div>
-            <div id="profilepic"><img src="images/profilemale.png" alt="profile pic" id="malepic"></div>
+            <div id="profilepic">
+                <img src="images/profilemale.png" alt="profile pic" id="malepic">
+            </div>
         </div>
         <table id="frm-table">
             <tr>
@@ -52,8 +52,8 @@
         </div>
             
     </content>
-    <footer id="footer">
-        <div></div>
+
+    <footer class="fotter">
     </footer>
 
 </body>

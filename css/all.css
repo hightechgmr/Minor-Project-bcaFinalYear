@@ -71,6 +71,8 @@ nav a:hover{
 .content{
     display: flex;
     flex-direction: column;
+
+    padding-bottom: 2rem;
 }
 
 .head{
@@ -150,22 +152,31 @@ nav a:hover{
 }
 
 
-
-
-
 /* scorecard */
-#table,th{
-    border:0.5px solid black;
+#table{
+    align-self: center;
+    max-width: 75%;
+    min-width: none;
+    border: 0.125rem solid black;
     font-size:2rem;
-    margin: auto;
+
+    border-collapse: collapse;
 }
-th{
+#table th{ 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
-    background-color:#E5E5E5;
-    padding:30px 50px 30px 50px;
+    background-color:#32325c;
+    padding: 2rem;
+
+    border: 0.001rem solid grey;
+    color: white;
 }
-#scorecard{
-    background-color:white;
+#table td{
+    border: 0.001rem solid grey;
+    padding: 1.5rem;
+}
+#table .gentable{
+    border: 0.125rem solid black;
 }
 
 
@@ -204,7 +215,7 @@ th{
     text-align: right;
 }
 td{
-    padding-bottom:50px;
+    padding-bottom: 50px;
 }
 td input{
     height:50px;
