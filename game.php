@@ -19,7 +19,7 @@ if(isset($_SESSION['user'])){?>
                 <input type="button" id="ruleofgame" class="button" value="Rules of games" style="background-color:#F2E9E4;" onclick="window.location.href='rule.php'">
                 <input type="button" id="scorecard" class="button" value="Score card" style="background-color:#F2E9E4;" onclick="window.location.href='scorecard.php'">
                 <input type="button" id="log-sign" class="button" value="Login/Signup">
-                <img src="images/profile.png" alt="profile" id="profile" onclick="window.location.href='images/profile.php'">
+                <img src="images/profile.png" alt="profile" id="profile" onclick="window.location.href='profile.php'">
             </div>
         </div>
     </header>
