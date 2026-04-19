@@ -1,5 +1,31 @@
-<?php session_start();
-if(isset($_SESSION['user'])){?>
+<?php
+session_start();
+
+// CHECK LOGIN
+if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// DATABASE CONNECTION
+$conn = mysqli_connect("localhost", "root", "", "tictactoe");
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$user = $_SESSION['user'];
+
+// FETCH ONLY LOGGED-IN USER DATA
+$sql = "SELECT * FROM scorecard WHERE user_name='$user'";
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    die("Query Failed: " . mysqli_error($conn));
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,32 +65,32 @@ if(isset($_SESSION['user'])){?>
             </tr>
 
             <?php
-                $conn = mysqli_connect("localhost", "root", "", "tictactoe");
+$sn = 1;
 
-                $query = "SELECT * FROM scorecard";
-                $result = mysqli_query($conn, $query);
+if (mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
 
-                $i = 1;
-                while($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr class='gentable'>
-                    <td>".$i++."</td>
-                    <td>".$row['game_name']."</td>
-                    <td>".$row['user_name']."</td>
-                    <td>".$row['total_matches']."</td>
-                    <td>".$row['won']."</td>
-                    <td>".$row['lost']."</td>
-                    <td>".$row['against']."</td>
-                    </tr>";
-                }
-            ?>
+        $wonClass = ($row['won'] > $row['lost']) ? "win" : "";
+        $lostClass = ($row['lost'] > $row['won']) ? "loss" : "";
+
+        echo "<tr>
+            <td>".$sn++."</td>
+            <td>".$row['game_name']."</td>
+            <td>".$row['user_name']."</td>
+            <td>".$row['total_matches']."</td>
+            <td class='$wonClass'>".$row['won']."</td>
+            <td class='$lostClass'>".$row['lost']."</td>
+            <td>".$row['against']."</td>
+        </tr>";
+    }
+
+} else {
+    echo "<tr><td colspan='7'>No records found</td></tr>";
+}
+?>
         </table> 
     </content>
 
-    
-    <footer class="fotter">
-    </footer>
 </body>
 </html>
-<?php } else { 
-  header("Location: login.php");
-} ?>
+
