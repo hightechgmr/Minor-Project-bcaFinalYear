@@ -73,9 +73,9 @@ if ($scoreResult) {
             <div class="buttons">
                 <input type="button" id="about" class="button" value="About">
                 <input type="button" id="ruleofgame" class="button" value="Rules of games" style="background-color:#F2E9E4;" onclick="window.location.href='rule.php'">
-                <input type="button" id="scorecard" class="button" value="Score card" style="background-color:#F2E9E4;" onclick="window.location.href='scorecard.php'">
+                <input type="button" id="scorecard" class="button" value="Score card" style="background-color:#F2E9E4;" onclick="window.location.href='score.php'">
                 <input type="button" id="log-sign" class="button" value="Login/Signup">
-                <img src="images/profile.png" alt="profile" id="profile" onclick="window.location.href='scorecard.php'">
+                <img src="images/profile.png" alt="profile" id="profile" onclick="window.location.href='score.php'">
             </div>
         </div>
     </header>
@@ -108,8 +108,10 @@ if ($scoreResult) {
             </tr>
         </table>
         <div id="rmv">
-            <input type="button"  id="rmvacc" value="Log Out">
-        </div>
+           <button id="rmvacc" onclick="window.location.href='logout.php'">
+              Log Out
+           </button>
+</div>
             
     </content>
     <footer id="footer">
