@@ -12,7 +12,7 @@
 
       <?php else: ?>
      <nav>
-        <a href="signup.php">Login</a>
+        <a href="login.php">Login/SingnUp</a>
       </nav>
       <?php endif; ?>
     
