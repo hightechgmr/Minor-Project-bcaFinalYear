@@ -12,32 +12,30 @@
             if($conn===false){
                 die("ERROR:could not connect.".mysqli_connect_error());
             }
-            $usrname=$_REQUEST['username'];
-            $psswrd=$_REQUEST['userpswd'];
-
+            $usrname=trim($_POST['username']);
+            $psswrd=trim($_POST['userpswd']);
+            
+            $usrname = preg_replace('/\s+/','',$usrname);
 
             $sql1="SELECT * FROM users where username='$usrname' and password='$psswrd'";
             $result=$conn->query($sql1);
             $val= $result->num_rows;
 
-            while($row=mysqli_fetch_array($result)){
-                
-                $data=$result->fetch_assoc();
-                if($val==1){
+
+            if($val==1){
+            $row=mysqli_fetch_array($result);   
                     $sql="INSERT INTO login_status (username,password) values ('$usrname','$psswrd')";
                     if(mysqli_query($conn,$sql)){
                         $_SESSION['user']=$usrname;
                         header("Location:indexafterlogin.php");
+                        exit();
                     }else{
                         echo("error.".mysqli_error($conn)); 
                     }
-                }
-                else{
-                    echo'<script type="text/JavaScript">
-                    alert("Invalid username or password");
-                    </script>';
-                }
-            }      
+            }
+            else{
+                echo "Invalid Credentials";
+            }    
         ?>
 </body>
 </html>

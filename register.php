@@ -12,9 +12,12 @@
                 die("ERROR:could not connect.".mysqli_connect_error());
             }
             
-            $username=$_REQUEST['username'];
-            $gender=$_REQUEST['gender'];
-            $password=$_REQUEST['userpswd'];
+            $username=trim($_POST['username']);
+            $gender=$_POST['gender'];
+            $password=trim($_POST['userpswd']);
+
+            $username = preg_replace('/\s+/','',$username);
+
             $sql1="SELECT count(*) FROM users where username='$username'";
             $result=$conn->query($sql1);
             while($row=mysqli_fetch_array($result)){
