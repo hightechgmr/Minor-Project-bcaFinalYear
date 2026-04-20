@@ -34,7 +34,8 @@
                     }
             }
             else{
-                echo "Invalid Credentials";
+                header("Location: login.php?error=wrong");
+                exit();
             }    
         ?>
 </body>
