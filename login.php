@@ -37,6 +37,11 @@
                         <tr>
                             <td colspan="2" style="padding: 1rem;">
                                <input type="submit" name="lin" id="lin" value="Login">
+                                <?php
+                                      if (isset($_GET['error']) && $_GET['error'] == "wrong") {
+                                       echo "<p style='color:red; margin-top:10px;'>Wrong username or password</p>";
+                                       }
+                             ?>
                             </td>
                         </tr>
                         <tr>
