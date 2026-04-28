@@ -37,7 +37,7 @@ if (!$result) {
 <body>
     <header>
       <nav class="navigation">
-        <a href="index.php">Home</a>
+        <a href="indexafterlogin.php">Home</a>
         <a href="rule.php">Game Rules</a>
         <a class="current-page">Scorecard</a>
       </nav>

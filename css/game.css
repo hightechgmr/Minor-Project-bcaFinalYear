@@ -1,69 +1,62 @@
 .gamecontent{
     display:flex;
-    align-items:center;
-    justify-content:space-around;
-    
+    justify-content: space-evenly;
+    align-items: center;
 }
 .game{
-    height:76vh;
-    width:70vh;
     display:grid; 
     grid-template-columns: auto auto auto; 
-    padding:10px;
+
+    height: 30rem;
+    width: 30rem;
 }
 .box{
-    height:200px;
-    width:200px;
+    height: 9rem;
+    width: 9rem;
+
     background-color:#4A4E69;
-    border:4px solid white;
-    margin:16px;
-    border-radius:20px;
-    padding:20px;
-    font-size:30px;
-    text-align:center;
-    filter:drop-shadow(5px 5px 5px #000000);
+    border:0.25rem solid #e0dbdb;
+    border-radius:1.25rem;
+    
     font-size:4rem;
     color:aqua;
+    text-align:center;
+    
+    filter:drop-shadow(00.3125rem 00.3125rem 00.3125rem #000000);
+
 }
 .box:hover{
-    border:4px solid #22223B;
+    border:0.25rem solid #22223B;
 }
-#text1{
-    text-align: center;
-    margin:50px;
-    font-size:2rem;
-    font-weight: bold;
-}
+
 .restart{
     display:flex;
     align-items:center;
     justify-content: center;
+
+    padding: 1.5rem;
 }
 .restat{
-    height:50px;
-    width:200px;
+    height: 4rem;
+    width: 12rem;
+
     background-color: #22223B;
     color:white;
-    margin-top:50px;
-    border:2px solid beige;
-    border-radius:10px;
-    margin-bottom:100px;
+    border:0.15rem solid beige;
+    border-radius: 1rem;
+    
     font-size:1.5rem;
 }
 .restat:hover{
+    border:0.125rem solid rgb(160, 26, 26);
+    cursor: pointer;
+    color: rgb(160, 26, 26);
+    background-color: white;
+}
+/*
+ #new-game:hover{
     border:4px solid rgb(26, 160, 26);
-}
-#msg-container{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-}
-#msg{
-    font-size:5vmin;
-    font-weight: bold;
-    text-align: center;
-    color: rgb(5, 44, 13);
-}
+} */
 #new-game{
     margin:40px;
     height:50px;
@@ -74,16 +67,30 @@
     border-radius:10px;
     font-size:1.5rem;
 }
-/* #new-game:hover{
-    border:4px solid rgb(26, 160, 26);
-} */
+#msg-container{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+    padding-bottom: 2rem;
+}
+#msg{
+    font-size:5vmin;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(5, 44, 13);
+}
 .hide{
     display: none;
 }
 #play1_name,#play2_name{
+    text-transform: uppercase;
+    padding: 0.125rem;
+
     color: #1c39c5;
-    text-align: center;
-    font-size: 2rem;
+    text-align: left;
+
+    font-size: 1.5rem;
     font-weight: 700;
 }
 input{

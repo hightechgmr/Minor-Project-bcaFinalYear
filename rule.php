@@ -11,7 +11,7 @@ if(isset($_SESSION['user'])){?>
 <body>
     <header>
       <nav class="navigation">
-        <a href="index.php">Home</a>
+        <a href="indexafterlogin.php">Home</a>
         <a class="current-page">Game Rules</a>
         <a href="score.php">Scorecard</a> 
       </nav>
