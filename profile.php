@@ -68,22 +68,23 @@ if ($scoreResult) {
 </head>
 <body>
     <header>
-      <nav class="navigation">
-        <a href="index.php">Home</a>
-        <a class="current-page">Game Rules</a>
+       <nav class="navigation">
+        <a href="indexafterlogin.php">Home</a>
+        <a href="rule.php">Game Rules</a>
         <a href="score.php">Scorecard</a> 
-      </nav>
-
-      <a href="profile.php" class="profile-container">
-          <img src="images/profile.png" alt="profile" id="profile">
-      </a>
+      </nav>    
     </header>
-    <content>
-        <div class="head">
-            <div id="div-logo"><img src="images/logo.jpeg" alt="logo" id="logo"></div>
-            <div id="topic">Profile:</div>
-            <div id="profilepic"><img src="images/profilemale.png" alt="profile pic" id="malepic"></div>
+
+    <content class="content">
+        <div class="head2">
+            <div id="profilepic">
+                <img src="images/profilemale.png" alt="profile pic" id="malepic">
+            </div>
+            <div class="headings" style="color: black; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                 Profile 
+            </div>
         </div>
+
         <table id="frm-table">
             <tr>
                 <td>User Name:</td>
@@ -106,15 +107,19 @@ if ($scoreResult) {
                 <td><input type="text" value="<?php echo $lost; ?>" readonly></td>
             </tr>
         </table>
+
         <div id="rmv">
            <button id="rmvacc" onclick="window.location.href='logout.php'">
               Log Out
            </button>
-</div>
+        </div>
+        
+        <div id="div-logo">
+             <img src="images/logo.jpeg" alt="logo" id="logo2">
+         </div>
             
     </content>
-    <footer id="footer">
-        <div></div>
+    <footer class="fotter">
     </footer>
 </body>
 </html>

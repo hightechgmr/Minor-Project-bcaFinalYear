@@ -13,8 +13,8 @@ if(isset($_SESSION['user'])){?>
 <body>
     <header>
       <nav class="navigation">
-        <a href="index.php">Home</a>
-        <a class="current-page">Game Rules</a>
+        <a href="indexafterlogin.php">Home</a>
+        <a href="rule.php" target="_blank">Game Rules</a>
         <a href="score.php">Scorecard</a> 
       </nav>
 
@@ -22,25 +22,55 @@ if(isset($_SESSION['user'])){?>
           <img src="images/profile.png" alt="profile" id="profile">
       </a>
     </header>
+
     <content>
         <div class="head">
-            <div id="div-logo"><img src="logo.jpeg" alt="logo" id="logo"></div>
-            <div id="topic">Tic-Tac-Toe:</div>
+            <div id="topic">
+                Tic-Tac-Toe
+            </div>
         </div>
         <div id="msg-container">
             <div id="msg"></div>
         </div>
         <div class="gamecontent">
             <div id="player1">
-                <img src="profilemale.png" alt="play1" id="play1">
                 <div id="play1_name"><?php echo $_SESSION['user'];?></div>
-                <div>
-                    match record:<br>
-                    total <input type="number" id="totalp1" name="totalp1" value="0" readonly><br>
-                    wins <input type="number" id="winp1" name="winp1" value="0" readonly> <br>
-                    lost <input type="number" id="lostp1" name="winp1" value="0" readonly><br>
-                </div>
+                <table class="userDataTable">
+                    <tr>
+                        <td colspan="2">
+                            Match Record
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total Matches:
+                        </td>
+                        <td>
+                            <input type="number" id="totalp1" name="totalp1" value="0" readonly>
+                            <!--" value="<?php echo $total_matches; ?>" readonly>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Wins:
+                        </td>
+                        <td>
+                            <input type="number" id="winp1" name="winp1" value="0" readonly>
+                            <!--" value="<?php echo $won; ?>" readonly>-->                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Loss:
+                        </td>
+                        <td>
+                            <input type="number" id="lostp1" name="winp1" value="0" readonly>
+                            <!--" value="<?php echo $lost; ?>" readonly>-->                            
+                        </td>
+                    </tr>
+                </table>
             </div>
+
             <div class="game">
                 <button class="box" id="box0"  onclick="boxclick('0');"></button>
                 <button class="box" id="box1"  onclick="boxclick('1');"></button>
@@ -52,25 +82,54 @@ if(isset($_SESSION['user'])){?>
                 <button class="box" id="box7"  onclick="boxclick('7');"></button>
                 <button class="box" id="box8"  onclick="boxclick('8');"></button>
             </div>
+
             <div id="player2">
-                <img src="images/profilefemale.png" alt="play1" id="play2">
                 <div id="play2_name"> </div>
-                <div>
-                    match record:<br>
-                    total <input type="number" id="totalp2" name="totalp2" value="0" readonly> <br>
-                    wins <input type="number" id="winp2" name="winp1" value="0" readonly> <br>
-                    lost <input type="number" id="lostp2" name="winp2" value="0" readonly><br>
-                </div>
+                <table class="userDataTable">
+                    <tr>
+                        <td colspan="2">
+                            Match Record
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total Matches:
+                        </td>
+                        <td>
+                            <input type="number" id="totalp2" name="totalp2" value="0" readonly>
+                            <!--" value="<?php echo $total_matches; ?>" readonly>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Wins:
+                        </td>
+                        <td>
+                            <input type="number" id="winp2" name="winp1" value="0" readonly>
+                            <!--" value="<?php echo $won; ?>" readonly>-->                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Loss:
+                        </td>
+                        <td>
+                            <input type="number" id="lostp2" name="winp2" value="0" readonly>
+                            <!--" value="<?php echo $lost; ?>" readonly>-->                            
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
+
         <div class="restart">
             <input type="submit" name="button" class="restat" value="Restart Game" onclick="reset();">
         </div> 
-        
-    
+  
     </content>
-    <footer id="footer">
-        <div></div>
+
+    <footer class="fotter" style="max-height: 2vh;">
+
     </footer>
     <script src="js/game.js?ver=4.3"></script>
 </body>
