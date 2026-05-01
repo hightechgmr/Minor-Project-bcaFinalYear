@@ -1,5 +1,19 @@
-<?php session_start();
-if(isset($_SESSION['user'])){?>
+<?php
+session_start();
+
+if (isset($_SESSION['user'])) {
+    $game_name = isset($_GET['game']) ? strtolower(trim($_GET['game'])) : 'tictactoe';
+    $game_name = preg_replace('/[^a-z0-9_-]/', '', $game_name);
+
+    if ($game_name === '') {
+        $game_name = 'tictactoe';
+    }
+
+    $game_titles = [
+        'tictactoe' => 'Tic-Tac-Toe'
+    ];
+    $game_title = $game_titles[$game_name] ?? ucwords(str_replace(['-', '_'], ' ', $game_name));
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,15 +40,15 @@ if(isset($_SESSION['user'])){?>
     <content>
         <div class="head">
             <div id="topic">
-                Tic-Tac-Toe
+                <?php echo htmlspecialchars($game_title); ?>
             </div>
         </div>
         <div id="msg-container">
             <div id="msg"></div>
         </div>
-        <div class="gamecontent">
+        <div class="gamecontent" data-game-name="<?php echo htmlspecialchars($game_name); ?>">
             <div id="player1">
-                <div id="play1_name"><?php echo $_SESSION['user'];?></div>
+                <div id="play1_name"><?php echo htmlspecialchars($_SESSION['user']); ?></div>
                 <table class="userDataTable">
                     <tr>
                         <td colspan="2">
@@ -65,7 +79,15 @@ if(isset($_SESSION['user'])){?>
                         </td>
                         <td>
                             <input type="number" id="lostp1" name="winp1" value="0" readonly>
-                            <!--" value="<?php echo $lost; ?>" readonly>-->                            
+                            <!--" value="<?php echo $lost; ?>" readonly>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Draws:
+                        </td>
+                        <td>
+                            <input type="number" id="drawp1" name="drawp1" value="0" readonly>
                         </td>
                     </tr>
                 </table>
@@ -115,7 +137,15 @@ if(isset($_SESSION['user'])){?>
                         </td>
                         <td>
                             <input type="number" id="lostp2" name="winp2" value="0" readonly>
-                            <!--" value="<?php echo $lost; ?>" readonly>-->                            
+                            <!--" value="<?php echo $lost; ?>" readonly>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Draws:
+                        </td>
+                        <td>
+                            <input type="number" id="drawp2" name="drawp2" value="0" readonly>
                         </td>
                     </tr>
                 </table>
@@ -131,9 +161,9 @@ if(isset($_SESSION['user'])){?>
     <footer class="fotter" style="max-height: 2vh;">
 
     </footer>
-    <script src="js/game.js?ver=4.3"></script>
+    <script src="js/game.js?ver=5.0"></script>
 </body>
 </html>
-<?php } else { 
+<?php } else {
   header("Location: login.php");
 } ?>
