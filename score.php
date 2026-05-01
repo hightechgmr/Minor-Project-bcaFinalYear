@@ -61,6 +61,7 @@ if (!$result) {
                 <th>Total Matches</th>
                 <th>Won</th>
                 <th>Lost</th>
+                <th>Draws</th>
                 <th>Opponent</th>
             </tr>
 
@@ -72,6 +73,7 @@ if (mysqli_num_rows($result) > 0) {
 
         $wonClass = ($row['won'] > $row['lost']) ? "win" : "";
         $lostClass = ($row['lost'] > $row['won']) ? "loss" : "";
+        $draws = max(0, (int)$row['total_matches'] - (int)$row['won'] - (int)$row['lost']);
 
         echo "<tr>
             <td>".$sn++."</td>
@@ -80,12 +82,13 @@ if (mysqli_num_rows($result) > 0) {
             <td>".$row['total_matches']."</td>
             <td class='$wonClass'>".$row['won']."</td>
             <td class='$lostClass'>".$row['lost']."</td>
+            <td>".$draws."</td>
             <td>".$row['against']."</td>
         </tr>";
     }
 
 } else {
-    echo "<tr><td colspan='7'>No records found</td></tr>";
+    echo "<tr><td colspan='8'>No records found</td></tr>";
 }
 ?>
         </table> 
