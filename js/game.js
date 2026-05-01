@@ -1,144 +1,222 @@
-// Player names
-let opp_name = prompt("Enter Your Friend name:");
-document.getElementById("play2_name").innerHTML = opp_name;
+const gameContainer = document.querySelector(".gamecontent");
+const gameName = gameContainer?.dataset.gameName || "tictactoe";
+const messageBox = document.getElementById("msg");
 
-let usr = document.getElementById("play1_name").innerHTML;
+// All score fields are grouped so future games can reuse the same update flow.
+const scoreInputs = {
+  player: {
+    total: document.getElementById("totalp1"),
+    wins: document.getElementById("winp1"),
+    losses: document.getElementById("lostp1"),
+    draws: document.getElementById("drawp1"),
+  },
+  opponent: {
+    total: document.getElementById("totalp2"),
+    wins: document.getElementById("winp2"),
+    losses: document.getElementById("lostp2"),
+    draws: document.getElementById("drawp2"),
+  },
+};
 
-// Score inputs
-let totlp1 = document.getElementById("totalp1");
-let winp1 = document.getElementById("winp1");
-let lostp1 = document.getElementById("lostp1");
-
-// Game variables
-let turn = 'O';
+let opponentName = "";
+let turn = "O";
 let count = 0;
-let board = ['', '', '', '', '', '', '', '', ''];
+let board = ["", "", "", "", "", "", "", "", ""];
+let gameOver = false;
 
 const winPatterns = [
-  [0,1,2],[0,3,6],[0,4,8],
-  [1,4,7],[2,5,8],[2,4,6],
-  [3,4,5],[6,7,8]
+  [0, 1, 2],
+  [0, 3, 6],
+  [0, 4, 8],
+  [1, 4, 7],
+  [2, 5, 8],
+  [2, 4, 6],
+  [3, 4, 5],
+  [6, 7, 8],
 ];
 
-// Player stats
-let totlplay1 = 0;
-let winplay1 = 0;
-let lostplay1 = 0;
+document.addEventListener("DOMContentLoaded", startGame);
 
-// ---------------- GAME PLAY ----------------
-function boxclick(val){
-  if (turn === 'O'){
-    document.getElementById('box'+val).innerHTML="O";
-    board[val]=turn;
-    turn='X';
-  } else {
-    document.getElementById('box'+val).innerHTML="X";
-    board[val]=turn;
-    turn='O';
+function startGame() {
+  if (!ensureOpponentName()) {
+    disableBoxes();
+    return;
   }
 
-  document.getElementById('box'+val).disabled=true;
+  resetBoard();
+  loadScore();
+}
+
+function ensureOpponentName() {
+  if (opponentName) {
+    return true;
+  }
+
+  let enteredName = "";
+
+  while (!enteredName.trim()) {
+    enteredName = prompt("Enter opponent name:") || "";
+
+    if (enteredName.trim()) {
+      break;
+    }
+
+    alert("Please enter opponent name");
+  }
+
+  opponentName = enteredName.trim();
+  document.getElementById("play2_name").textContent = opponentName;
+  messageBox.textContent = "";
+  return true;
+}
+
+function boxclick(value) {
+  const boxIndex = Number(value);
+
+  if (gameOver || !opponentName || board[boxIndex] !== "") {
+    return;
+  }
+
+  const box = document.getElementById(`box${boxIndex}`);
+  board[boxIndex] = turn;
+  box.textContent = turn;
+  box.disabled = true;
   count++;
-  check_winner();
+
+  if (!checkWinner()) {
+    turn = turn === "O" ? "X" : "O";
+  }
 }
 
-// ---------------- CHECK WINNER ----------------
-function check_winner() {
-  for (let i = 0; i < winPatterns.length; i++) {
-    let [a,b,c] = winPatterns[i];
-
-    if(board[a] && board[a] === board[b] && board[b] === board[c]){
-      winner(board[a]);
-      return;
+function checkWinner() {
+  for (const [a, b, c] of winPatterns) {
+    if (board[a] && board[a] === board[b] && board[b] === board[c]) {
+      finishGame(board[a] === "O" ? "win" : "loss");
+      return true;
     }
-  } }
-
-  if(count === 9){
-    document.getElementById("msg").innerHTML = "It's a Tie";
-  
-    totlplay1++;        //increase total
-    display_record();   //update UI
-  
-    sendScore("tie");   // optional
-  
-    disablebox();
   }
 
-// ---------------- WINNER ----------------
-function winner(win){
-
-  if(win === 'O'){
-    document.getElementById("msg").innerHTML = "Winner: " + usr;
-
-    winplay1++;      // increase win
-  } else {
-    document.getElementById("msg").innerHTML = "Winner: " + opp_name;
-
-    lostplay1++;     //increase loss
+  if (count === 9) {
+    finishGame("draw");
+    return true;
   }
 
-  totlplay1++;       //increase total matches
-
-  display_record();  //update UI
-
-  sendScore(win === 'O' ? "win" : "loss"); //send to DB
-
-  disablebox();
+  return false;
 }
 
-// ---------------- DISABLE ----------------
-function disablebox(){
-  for(let i=0;i<9;i++){
-    document.getElementById("box"+i).disabled=true;
-  }
-}
+function finishGame(result) {
+  gameOver = true;
+  disableBoxes();
 
-// ---------------- RESET ----------------
-function reset(){
-  turn='O';
-  count=0;
-
-  for(let i=0;i<9;i++){
-    document.getElementById("box"+i).disabled=false;
-    document.getElementById("box"+i).innerHTML='';
-    board[i]='';
-  }
-
-  document.getElementById("msg").innerHTML='';
-}
-
-// ---------------- DISPLAY ----------------
-function display_record(){
-  totlp1.value = totlplay1;
-  winp1.value = winplay1;
-  lostp1.value = lostplay1;
-}
-// ---------------- AJAX SEND ----------------
-function sendScore(result){
-
-  let xhr = new XMLHttpRequest();
-
-  let won = 0;
-  let lost = 0;
-
-  if(result === "win") won = 1;
-  else if(result === "loss") lost = 1;
-
-  let params =
-    "game_name=tictactoe" +
-    "&won=" + won +
-    "&lost=" + lost +
-    "&against=" + opp_name;
-
-  xhr.open("POST", "game_score.php", true);
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState === 4 && xhr.status === 200){
-      console.log(xhr.responseText);
-      window.location.href = "score.php";
-    }
+  const messages = {
+    win: "You Won!",
+    loss: "You Lost!",
+    draw: "It's a Draw!",
   };
 
-  xhr.send(params);
+  messageBox.textContent = messages[result];
+  saveScore(result);
+}
+
+function disableBoxes() {
+  for (let i = 0; i < 9; i++) {
+    document.getElementById(`box${i}`).disabled = true;
+  }
+}
+
+function reset() {
+  if (!opponentName && !ensureOpponentName()) {
+    disableBoxes();
+    return;
+  }
+
+  resetBoard();
+}
+
+function resetBoard(clearMessage = true) {
+  turn = "O";
+  count = 0;
+  gameOver = false;
+  board = ["", "", "", "", "", "", "", "", ""];
+
+  if (clearMessage) {
+    messageBox.textContent = "";
+  }
+
+  for (let i = 0; i < 9; i++) {
+    const box = document.getElementById(`box${i}`);
+    box.disabled = false;
+    box.textContent = "";
+  }
+}
+
+function displayRecord(stats) {
+  const total = Number(stats.total_matches) || 0;
+  const wins = Number(stats.won) || 0;
+  const losses = Number(stats.lost) || 0;
+  const draws = Number(stats.draws) || Math.max(0, total - wins - losses);
+
+  scoreInputs.player.total.value = total;
+  scoreInputs.player.wins.value = wins;
+  scoreInputs.player.losses.value = losses;
+  scoreInputs.player.draws.value = draws;
+
+  scoreInputs.opponent.total.value = total;
+  scoreInputs.opponent.wins.value = losses;
+  scoreInputs.opponent.losses.value = wins;
+  scoreInputs.opponent.draws.value = draws;
+}
+
+// Builds one shared payload shape for loading and saving scores.
+function buildScoreRequest(action, result = "") {
+  const params = new URLSearchParams();
+  params.append("action", action);
+  params.append("game_name", gameName);
+  params.append("against", opponentName);
+
+  if (result) {
+    params.append("result", result);
+  }
+
+  return params;
+}
+
+async function loadScore() {
+  try {
+    const response = await fetch("game_score.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: buildScoreRequest("get_stats"),
+    });
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || "Could not load score.");
+    }
+
+    displayRecord(data.stats);
+  } catch (error) {
+    messageBox.textContent = error.message;
+  }
+}
+
+// Saves the result without redirecting and redraws the score from the database response.
+async function saveScore(result) {
+  try {
+    const response = await fetch("game_score.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: buildScoreRequest("save_score", result),
+    });
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || "Could not update score.");
+    }
+
+    displayRecord(data.stats);
+    setTimeout(() => resetBoard(false), 1200);
+  } catch (error) {
+    messageBox.textContent = error.message;
+  }
 }
