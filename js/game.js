@@ -55,7 +55,7 @@ function ensureOpponentName() {
   let enteredName = "";
 
   while (!enteredName.trim()) {
-     enteredName = prompt("Enter opponent name:");
+    enteredName = prompt("Enter opponent name:");
 
     if (enteredName === null) {
       window.location.href = "indexafterlogin.php";
