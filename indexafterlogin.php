@@ -66,7 +66,7 @@ if(isset($_SESSION['user'])){?>
           </div>
 
           <div class="buttons">
-            <a href="game.php" class="button">
+            <a href="tictactoe.php" class="button">
               PLAY NOW
             </a>
             <a href="score.php" class="button">
