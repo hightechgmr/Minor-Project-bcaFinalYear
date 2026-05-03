@@ -34,7 +34,7 @@ if(isset($_SESSION['user'])){?>
             <div class="head-content">
                 <div class="headings">Tic-Tac-Toe</div>
 
-                <a href="Game.php" class="playnow">
+                <a href="tictactoe.php" class="playnow">
                     Play Now
                 </a>
             </div>
