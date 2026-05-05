@@ -17,8 +17,12 @@
             
             $usrname = preg_replace('/\s+/','',$usrname);
 
-            $sql1="SELECT * FROM users where username='$usrname' and password='$psswrd'";
-            $result=$conn->query($sql1);
+            // BINARY makes username and password checks case-sensitive.
+            $sql1="SELECT * FROM users WHERE BINARY username = ? AND BINARY password = ?";
+            $stmt=mysqli_prepare($conn,$sql1);
+            mysqli_stmt_bind_param($stmt,"ss",$usrname,$psswrd);
+            mysqli_stmt_execute($stmt);
+            $result=mysqli_stmt_get_result($stmt);
             $val= $result->num_rows;
 
 
