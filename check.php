@@ -17,11 +17,15 @@ if(!$conn)
 /* Check login */
 if(isset($_POST['login']))
 {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
-    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = mysqli_query($conn,$query);
+  
+    $query = "SELECT * FROM users WHERE BINARY username = ? AND BINARY password = ?";
+    $stmt = mysqli_prepare($conn,$query);
+    mysqli_stmt_bind_param($stmt,"ss",$username,$password);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
     if(mysqli_num_rows($result) == 1)
     {
