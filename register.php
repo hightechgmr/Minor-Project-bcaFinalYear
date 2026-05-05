@@ -18,8 +18,12 @@
 
             $username = preg_replace('/\s+/','',$username);
 
-            $sql1="SELECT count(*) FROM users where username='$username'";
-            $result=$conn->query($sql1);
+           
+            $sql1="SELECT count(*) FROM users WHERE BINARY username = ?";
+            $stmt=mysqli_prepare($conn,$sql1);
+            mysqli_stmt_bind_param($stmt,"s",$username);
+            mysqli_stmt_execute($stmt);
+            $result=mysqli_stmt_get_result($stmt);
             while($row=mysqli_fetch_array($result)){
                 $val= $row['count(*)'];
                 if($val>=1){
@@ -38,8 +42,6 @@
                     
                 
             }
-            
-            
             
             mysqli_close($conn);
         ?>
