@@ -1,13 +1,24 @@
 <?php
 session_start();
 
-// CHECK LOGIN
+// Support the existing app session key and the alternate key used in check.php.
+if (!isset($_SESSION['user']) && isset($_SESSION['username'])) {
+    $_SESSION['user'] = $_SESSION['username'];
+}
+
 if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
     header("Location: login.php");
     exit();
 }
 
-// DATABASE CONNECTION
+function format_score_time($seconds) {
+    $seconds = max(0, (int)$seconds);
+    $minutes = floor($seconds / 60);
+    $remainingSeconds = $seconds % 60;
+
+    return sprintf('%02d:%02d', $minutes, $remainingSeconds);
+}
+
 $conn = mysqli_connect("localhost", "root", "", "tictactoe");
 
 if (!$conn) {
@@ -16,15 +27,24 @@ if (!$conn) {
 
 $user = $_SESSION['user'];
 
-// FETCH ONLY LOGGED-IN USER DATA
-$sql = "SELECT * FROM scorecard WHERE user_name='$user'";
-$result = mysqli_query($conn, $sql);
+$scoreSql = "SELECT * FROM scorecard WHERE user_name = ?";
+$scoreStmt = mysqli_prepare($conn, $scoreSql);
+mysqli_stmt_bind_param($scoreStmt, 's', $user);
+mysqli_stmt_execute($scoreStmt);
+$result = mysqli_stmt_get_result($scoreStmt);
 
 if (!$result) {
     die("Query Failed: " . mysqli_error($conn));
 }
-?>
 
+$eightPuzzleSql = "
+    SELECT user_name, moves, time_seconds
+    FROM eight_puzzle_scorecard
+    ORDER BY time_seconds ASC, moves ASC
+    LIMIT 5
+";
+$eightPuzzleResult = mysqli_query($conn, $eightPuzzleSql);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +53,73 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/all.css">
     <title>scorecard</title>
+    <style>
+        .score-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .score-heading {
+            color: black;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 3rem;
+            font-weight: bolder;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .table-wrap {
+            width: 90%;
+            overflow-x: auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .score-page-table {
+            align-self: center;
+            max-width: 75%;
+            border: 0.125rem solid black;
+            font-size: 2rem;
+            border-collapse: collapse;
+        }
+
+        .score-page-table th {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            background-color: #32325c;
+            padding: 2rem;
+            border: 0.001rem solid grey;
+            color: white;
+        }
+
+        .score-page-table td {
+            border: 0.001rem solid grey;
+            padding: 1.5rem;
+        }
+
+        .score-page-table tr:hover td {
+            background: #F2E9E4;
+        }
+
+        @media (max-width: 850px) {
+            .score-heading {
+                font-size: 2.3rem;
+            }
+
+            .score-page-table {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+
+            .score-page-table th,
+            .score-page-table td {
+                padding: 0.85rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -48,52 +135,90 @@ if (!$result) {
       </a>
     </header>
 
-    <content class="content">
+    <main class="content">
         <div class="head">
             <div class="headings" style="color: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">ScoreCard:</div>
         </div>
 
-        <table id="table">
-            <tr>
-                <th>S.No.</th>
-                <th>Game Name</th>
-                <th>Username</th>
-                <th>Total Matches</th>
-                <th>Won</th>
-                <th>Lost</th>
-                <th>Draws</th>
-                <th>Opponent</th>
-            </tr>
+        <section class="score-section">
+            <div class="score-heading">Tic Tac Toe Scorecard</div>
+            <div class="table-wrap">
+                <table id="table" class="score-page-table">
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Game Name</th>
+                        <th>Username</th>
+                        <th>Total Matches</th>
+                        <th>Won</th>
+                        <th>Lost</th>
+                        <th>Draws</th>
+                        <th>Opponent</th>
+                    </tr>
 
-            <?php
-$sn = 1;
+                    <?php
+                    $sn = 1;
 
-if (mysqli_num_rows($result) > 0) {
-    while($row = mysqli_fetch_assoc($result)) {
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $wonClass = ((int)$row['won'] > (int)$row['lost']) ? "win" : "";
+                            $lostClass = ((int)$row['lost'] > (int)$row['won']) ? "loss" : "";
+                            $draws = max(0, (int)$row['total_matches'] - (int)$row['won'] - (int)$row['lost']);
 
-        $wonClass = ($row['won'] > $row['lost']) ? "win" : "";
-        $lostClass = ($row['lost'] > $row['won']) ? "loss" : "";
-        $draws = max(0, (int)$row['total_matches'] - (int)$row['won'] - (int)$row['lost']);
+                            echo "<tr>
+                                <td>" . $sn++ . "</td>
+                                <td>" . htmlspecialchars($row['game_name']) . "</td>
+                                <td>" . htmlspecialchars($row['user_name']) . "</td>
+                                <td>" . (int)$row['total_matches'] . "</td>
+                                <td class='" . $wonClass . "'>" . (int)$row['won'] . "</td>
+                                <td class='" . $lostClass . "'>" . (int)$row['lost'] . "</td>
+                                <td>" . $draws . "</td>
+                                <td>" . htmlspecialchars($row['against']) . "</td>
+                            </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='8'>No records found</td></tr>";
+                    }
+                    ?>
+                </table>
+            </div>
+        </section>
 
-        echo "<tr>
-            <td>".$sn++."</td>
-            <td>".$row['game_name']."</td>
-            <td>".$row['user_name']."</td>
-            <td>".$row['total_matches']."</td>
-            <td class='$wonClass'>".$row['won']."</td>
-            <td class='$lostClass'>".$row['lost']."</td>
-            <td>".$draws."</td>
-            <td>".$row['against']."</td>
-        </tr>";
-    }
+        <section class="score-section">
+            <div class="score-heading">8 Puzzle Top 5 Scores</div>
+            <div class="table-wrap">
+                <table class="score-page-table">
+                    <tr>
+                        <th>S.No</th>
+                        <th>Game Name</th>
+                        <th>Username</th>
+                        <th>Best Moves</th>
+                        <th>Best Time</th>
+                    </tr>
 
-} else {
-    echo "<tr><td colspan='8'>No records found</td></tr>";
-}
-?>
-        </table> 
-    </content>
+                    <?php
+                    $puzzleSn = 1;
+
+                    if ($eightPuzzleResult && mysqli_num_rows($eightPuzzleResult) > 0) {
+                        while ($row = mysqli_fetch_assoc($eightPuzzleResult)) {
+                            echo "<tr>
+                                <td>" . $puzzleSn++ . "</td>
+                                <td>8 Puzzle</td>
+                                <td>" . htmlspecialchars($row['user_name']) . "</td>
+                                <td>" . (int)$row['moves'] . "</td>
+                                <td>" . format_score_time($row['time_seconds']) . "</td>
+                            </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='5'>No records found</td></tr>";
+                    }
+                    ?>
+                </table>
+            </div>
+        </section>
+    </main>
 
 </body>
 </html>
+
+<?php mysqli_close($conn); ?>
