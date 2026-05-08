@@ -17,6 +17,7 @@ if(isset($_SESSION['user'])){?>
     <header>
       <nav class="navigation">
         <a class="current-page">Home</a>
+        <a href="games_list.php">Our Games</a>
         <a href="rule.php">Game Rules</a>
         <a href="score.php">Scorecard</a> 
       </nav>
@@ -46,35 +47,7 @@ if(isset($_SESSION['user'])){?>
       </div>
       <hr/>
 
-      <h1 class="headings" style="justify-self: center;">Our Games</h1>
-      <div class="ourgames">
-        <div class="tictactoe-main-content">
-          <div class="tictactoe">
-            <div id="Img">
-              <img src="images/tictactoe.png" alt="tic tac toe" />
-            </div>
-          
-            <div class="content">
-              <h3 class="headings">Tic-Tac-Toe</h3>
-              <p>
-                Tic Tac toe is a classic strategy game for two players. Played on a
-                3x3 grid, players take turns marking squares with "X" or "0". The
-                first player to get three of their marks in a row(horizontally,
-                vertically, or diagonally) wins! <br />
-              </p>
-            </div> 
-          </div>
 
-          <div class="buttons">
-            <a href="tictactoe.php" class="button">
-              PLAY NOW
-            </a>
-            <a href="score.php" class="button">
-              PAST SCORES
-            </a>
-            </button>
-          </div>
-        </div>
       </div>
     </div>
 

@@ -38,6 +38,7 @@ if (!$result) {
     <header>
       <nav class="navigation">
         <a href="indexafterlogin.php">Home</a>
+        <a href="games_list.php">Our Games</a>
         <a href="rule.php">Game Rules</a>
         <a class="current-page">Scorecard</a>
       </nav>
