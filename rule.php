@@ -63,7 +63,7 @@ if(isset($_SESSION['user'])){?>
             <div class="head-content">
                 <div class="headings">8-Puzzle Problem</div>
 
-                <a href="" class="playnow">
+                <a href="eight_puzzle.php" class="playnow">
                     Play Now
                 </a>
             </div>
