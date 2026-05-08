@@ -1,0 +1,188 @@
+.game-wrapper {
+    width: 90%;
+    max-width: 1100px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.panel {
+    background: #9A8C98;
+    border: 0.25rem solid #333c78;
+    box-shadow: 0.45rem 0.45rem 0.45rem #000000;
+    padding: 1.5rem;
+}
+
+.game-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.action-button,
+.puzzle-tile {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.action-button {
+    background: #4A4E69;
+    color: #ffffff;
+    border: 0.125rem solid #ffffff;
+    border-radius: 0.75rem;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+}
+
+.action-button:hover {
+    background: #22223B;
+}
+
+.status-box {
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #173b16;
+    margin-bottom: 1rem;
+    min-height: 2.2rem;
+}
+
+.puzzle-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.puzzle-board {
+    --tile-gap: 0.6rem;
+    width: min(86vw, 27rem);
+    aspect-ratio: 1 / 1;
+    position: relative;
+    margin: 0 auto;
+    background: #F2E9E4;
+    border: 0.25rem solid #e0dbdb;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.puzzle-tile {
+    position: absolute;
+    width: calc((100% - (2 * var(--tile-gap))) / 3);
+    height: calc((100% - (2 * var(--tile-gap))) / 3);
+    background: #4A4E69;
+    color: aqua;
+    border: 0.25rem solid #e0dbdb;
+    border-radius: 1rem;
+    font-size: clamp(2.8rem, 10vw, 5rem);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: top 180ms ease, left 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.puzzle-tile:hover:not(:disabled) {
+    border-color: #22223B;
+    background: #3e425c;
+}
+
+.puzzle-tile:disabled {
+    cursor: default;
+}
+
+.puzzle-tile.invalid-move {
+    transform: scale(0.96);
+    border-color: #a92222;
+}
+
+.scorecard h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.score-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #F2E9E4;
+}
+
+.score-table td {
+    border: 0.0625rem solid #4A4E69;
+    padding: 0.8rem;
+    font-size: 1rem;
+}
+
+.score-table td:first-child {
+    font-weight: bold;
+}
+
+.win-message {
+    position: fixed;
+    inset: 0;
+    background: rgba(34, 34, 59, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 20;
+}
+
+.win-message[hidden] {
+    display: none;
+}
+
+.win-card {
+    width: min(90vw, 28rem);
+    background: #9A8C98;
+    border: 0.25rem solid #333c78;
+    box-shadow: 0.45rem 0.45rem 0.45rem #000000;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.win-card h2 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.win-card p {
+    background: #F2E9E4;
+    border: 0.0625rem solid #4A4E69;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+@media (max-width: 850px) {
+    .game-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    #topic {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .status-box {
+        font-size: 1.35rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .game-actions {
+        flex-direction: column;
+    }
+
+    .action-button {
+        width: 100%;
+    }
+
+    .panel {
+        padding: 1rem;
+    }
+}
