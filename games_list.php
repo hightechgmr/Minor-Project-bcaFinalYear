@@ -70,11 +70,11 @@
                     </div> 
                </div>
 
-               <div class="buttons">
-                    <a href="" class="button">
+              <div class="buttons">
+                    <a href="eight_puzzle.php" class="button">
                          PLAY NOW
                     </a>
-                    <a href="" class="button">
+                    <a href="score.php" class="button">
                          PAST SCORES
                     </a>
                </div>
