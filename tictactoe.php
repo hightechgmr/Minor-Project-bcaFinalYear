@@ -57,7 +57,6 @@ function find_best_move($board, $symbol, $winningLines) {
 }
 
 function get_computer_move($board, $winningLines) {
-    // Medium AI: win first, block second, then prefer center/corners before random.
     $winMove = find_best_move($board, 'O', $winningLines);
     if ($winMove !== -1) {
         return $winMove;
@@ -230,140 +229,22 @@ $opponentName = $game['mode'] === 'computer' ? 'Computer' : ($game['player2_name
 $score = $game['mode'] ? fetch_score($playerName, $opponentName) : ['total_matches' => 0, 'won' => 0, 'lost' => 0, 'draws' => 0];
 $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing' && $game['turn'] === 'O';
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/games.css">
     <title>Tic Tac Toe</title>
-    <style>
-        .game-wrapper {
-            width: 90%;
-            max-width: 1100px;
-            margin: 2rem auto;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 2rem;
-            align-items: start;
-        }
-
-        .panel {
-            background: #9A8C98;
-            border: 0.25rem solid #333c78;
-            box-shadow: 0.45rem 0.45rem 0.45rem #000000;
-            padding: 1.5rem;
-        }
-
-        .mode-actions, .game-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-
-        .mode-button, .action-button, .cell {
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .mode-button, .action-button {
-            background: #4A4E69;
-            color: #ffffff;
-            border: 0.125rem solid #ffffff;
-            border-radius: 0.75rem;
-            padding: 0.8rem 1rem;
-            font-size: 1rem;
-        }
-
-        .mode-button:hover, .action-button:hover {
-            background: #22223B;
-        }
-
-        .status-box {
-            text-align: center;
-            font-size: 1.7rem;
-            font-weight: bold;
-            color: #173b16;
-            margin-bottom: 1rem;
-        }
-
-        .board {
-            width: min(86vw, 27rem);
-            aspect-ratio: 1 / 1;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.6rem;
-            margin: 0 auto;
-        }
-
-        .board form {
-            display: block;
-            min-width: 0;
-            min-height: 0;
-        }
-
-        .cell {
-            width: 100%;
-            height: 100%;
-            min-width: 0;
-            background: #4A4E69;
-            color: aqua;
-            border: 0.25rem solid #e0dbdb;
-            border-radius: 1rem;
-            font-size: clamp(3rem, 11vw, 5rem);
-            line-height: 1;
-        }
-
-        .cell:hover:not(:disabled) {
-            border-color: #22223B;
-            background: #3e425c;
-        }
-
-        .cell:disabled {
-            cursor: default;
-            opacity: 0.95;
-        }
-
-        .scorecard h2, .mode-card h2 {
-            color: #ffffff;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .score-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #F2E9E4;
-        }
-
-        .score-table td {
-            border: 0.0625rem solid #4A4E69;
-            padding: 0.8rem;
-            font-size: 1rem;
-        }
-
-        .score-table td:first-child {
-            font-weight: bold;
-        }
-
-        @media (max-width: 850px) {
-            .game-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            #topic {
-                font-size: 3rem;
-                text-align: center;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
         <nav class="navigation">
             <a href="indexafterlogin.php">Home</a>
+            <a href="games_list.php">Our Games</a>
             <a href="rule.php">Game Rules</a>
             <a href="score.php">Scorecard</a>
         </nav>
@@ -375,31 +256,33 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
 
     <main class="content">
         <div class="head">
-            <div id="topic">Tic Tac Toe</div>
+            <div class="headings" style="color: black;">Tic Tac Toe</div>
         </div>
 
         <?php if (!$game['mode']) { ?>
-            <section class="panel mode-card" style="width: min(90%, 45rem); margin: 0 auto 2rem;">
+            <section class="player_selection">
                 <h2>Select Game Mode</h2>
                 <div class="mode-actions">
-                    <form method="post">
+                    <form method="post" class="modes">
                         <input type="hidden" name="action" value="choose_mode">
                         <input type="hidden" name="mode" value="computer">
-                        <button type="submit" class="mode-button">Player 1 - Play with Computer</button>
+                        <img src="images/vsai.jpg" class="game-image">
+                        <button type="submit" class="mode-button">You vs AI</button>
                     </form>
 
-                    <form method="post" id="twoPlayerForm">
+                    <form method="post" id="twoPlayerForm" class="modes">
                         <input type="hidden" name="action" value="choose_mode">
                         <input type="hidden" name="mode" value="two_player">
                         <input type="hidden" name="player2_name" id="player2NameInput" value="">
-                        <button type="submit" class="mode-button">Player 2 - Two Player Mode</button>
+                        <button type="submit" class="mode-button">Two Player Mode</button>
+                        <img src="images/1v1.jpg" class="game-image">
                     </form>
                 </div>
             </section>
         <?php } else { ?>
             <section class="game-wrapper">
-                <aside class="panel scorecard">
-                    <h2>Scorecard</h2>
+                <div class="panel-scorecard">
+                    <h2>Head to Head</h2>
                     <table class="score-table">
                         <tr>
                             <td>Player Name</td>
@@ -433,7 +316,7 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
                             <button type="submit" class="action-button">Change Mode</button>
                         </form>
                     </div>
-                </aside>
+                </div>
 
                 <section class="panel">
                     <div class="status-box">
@@ -465,7 +348,8 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
         <?php } ?>
     </main>
 
-    <footer class="fotter"></footer>
+    <div class="fotter"></div>
+
     <script>
         const twoPlayerForm = document.getElementById("twoPlayerForm");
         const player2NameInput = document.getElementById("player2NameInput");
@@ -502,8 +386,24 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
 
             setTimeout(function () {
                 computerMoveForm.submit();
-            }, 1000);
+            }, 250);
         }
+
+        // Save scroll position before form submit
+    document.querySelectorAll("form").forEach(function(form) {
+        form.addEventListener("submit", function() {
+            sessionStorage.setItem("scrollPos", window.scrollY);
+        });
+    });
+
+    // Restore scroll position after reload
+    window.addEventListener("load", function() {
+        const scrollPos = sessionStorage.getItem("scrollPos");
+
+        if (scrollPos !== null) {
+            window.scrollTo(0, parseInt(scrollPos));
+        }
+    });
     </script>
 </body>
 </html>

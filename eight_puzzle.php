@@ -108,13 +108,14 @@ if ($requestMethod === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/all.css">
-    <link rel="stylesheet" href="css/eight_puzzle.css">
+    <link rel="stylesheet" href="css/games.css">
     <title>8 Puzzle Game</title>
 </head>
 <body>
     <header>
         <nav class="navigation">
             <a href="indexafterlogin.php">Home</a>
+            <a href="games_list.php">Our Games</a>
             <a href="rule.php">Game Rules</a>
             <a href="score.php">Scorecard</a>
         </nav>
@@ -126,11 +127,11 @@ if ($requestMethod === 'POST') {
 
     <main class="content">
         <div class="head">
-            <div id="topic">8 Puzzle Game</div>
+            <div class="headings" style="color: black;">8 Puzzle Game</div>
         </div>
 
         <section class="game-wrapper">
-            <aside class="panel scorecard">
+            <div class="panel-scorecard">
                 <h2>Game Info</h2>
                 <table class="score-table">
                     <tr>
@@ -156,10 +157,12 @@ if ($requestMethod === 'POST') {
                     <button type="button" class="action-button" id="restartBtn">Restart</button>
                     <button type="button" class="action-button" id="shuffleBtn">Shuffle</button>
                 </div>
-            </aside>
+            </div>
 
-            <section class="panel puzzle-panel">
-                <div class="status-box" id="statusBox">Arrange the tiles from 1 to 8</div>
+            <section class="panel">
+                <div class="status-box" id="statusBox">
+                    Arrange the tiles from 1 to 8
+                </div>
 
                 <div class="puzzle-board" id="puzzleBoard" aria-label="8 Puzzle board">
                     <?php for ($tile = 1; $tile <= 8; $tile++) { ?>

@@ -155,6 +155,129 @@ nav a:hover{
 }
 
 
+
+
+/* profile */
+#malepic{
+    height:14rem;
+    width:14rem;
+    filter:drop-shadow(0.5rem 0.5rem 0.5rem #000000); 
+}
+#malepic:hover{
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+#profilepic{
+    float:right;
+    padding: 2rem 0rem;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.head2{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem 0rem;
+}
+
+#frm-table{
+    margin: auto;
+    font-size:3rem;
+    text-align: right;
+    
+    border: solid black;
+    border-collapse: collapse;
+}
+#frm-table tr{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#frm-table td{
+    padding: 2rem;
+}
+#frm-table td input{
+    
+    font-size: 1.5rem;
+    height:4rem;
+    max-width: fit-content;
+    min-width: fit-content;
+    
+    background-color:#4B4B4B;
+    color:white;
+    border-radius:0.8rem;
+    
+    text-transform: capitalize;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#frm-table td input:hover{
+    border: 0.125rem solid #f9f9fc;
+}
+
+
+#rmvacc{
+    height:6rem;
+    width:17rem;
+    background-color:#454154;
+    color: #f1f1f1;
+    font-size:2rem;
+    filter:drop-shadow(0.3125rem 0.3125rem 0.3125rem #000000);
+    border-radius:1.25rem;
+    font-weight: bold;
+    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#rmv{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    
+    padding: 3rem;
+}
+#rmvacc:hover{
+    border:0.125rem solid rgb(0, 0, 0);
+    color: white;
+    background-color: rgb(150, 22, 22);
+    cursor: pointer;
+    filter:drop-shadow(0.6rem 0.6rem 0.6rem #ff0000);
+    box-shadow:0.1rem 0.1rem 0.1rem #000000,-0.1rem 0.1rem 0.1rem #000000;
+}
+
+#logo2{
+    width: 16rem;
+    border-radius:50%;
+    border:0.125rem solid rgb(0, 255, 51);
+    box-shadow:0.4rem 0.4rem 0.4rem #000000,-0.4rem 0.4rem 0.4rem #000000;
+}
+
+#div-logo{
+    justify-self: center;
+    align-self: center;
+}
+
+body:has(#rmvacc:hover) #logo2{
+    border:4px solid rgb(255, 0, 0);
+    filter:drop-shadow(0.6rem 0.6rem 0.6rem #ff0000);
+}
+
+
 /* scorecard */
 #table{
     align-self: center;
@@ -183,122 +306,76 @@ nav a:hover{
 }
 
 
-/* profile */
-#malepic{
-    height:14rem;
-    width:14rem;
-    filter:drop-shadow(0.5rem 0.5rem 0.5rem #000000); 
-}
-#malepic:hover{
-    animation: shake 0.5s;
-  animation-iteration-count: infinite;
-}
-#profilepic{
-    float:right;
-    padding: 2rem 0rem;
-}
-
-@keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
-  }
-
-.head2{
-    display:flex;
+.score-section {
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    padding: 2rem 0rem;
+    margin-bottom: 3rem;
 }
 
-#frm-table{
-    margin: auto;
-    font-size:3rem;
-    text-align: right;
+.score-heading {
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 3rem;
+    font-weight: bolder;
+    text-align: center;
+    margin: 1rem 0;
+}
 
-    border: solid black;
+.table-wrap {
+    width: 90%;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.score-page-table {
+    align-self: center;
+    max-width: 75%;
+    border: 0.125rem solid black;
+    font-size: 2rem;
     border-collapse: collapse;
 }
-#frm-table tr{
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#frm-table td{
+
+.score-page-table th {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    background-color: #32325c;
     padding: 2rem;
-}
-#frm-table td input{
-
-    font-size: 1.5rem;
-    height:4rem;
-    max-width: fit-content;
-    min-width: fit-content;
-
-    background-color:#4B4B4B;
-    color:white;
-    border-radius:0.8rem;
-
-    text-transform: capitalize;
-    text-align: center;
-    vertical-align: middle;
+    border: 0.001rem solid grey;
+    color: white;
 }
 
-#frm-table td input:hover{
-    border: 0.125rem solid #f9f9fc;
+.score-page-table td {
+    padding: 1.5rem;
+    border: 0.001rem solid grey;
 }
 
+.score-page-table tr:hover td {
+    background: #F2E9E4;
+}
 
-#rmvacc{
-    height:6rem;
-    width:17rem;
-    background-color:#454154;
-    color: #f1f1f1;
-    font-size:2rem;
-    filter:drop-shadow(0.3125rem 0.3125rem 0.3125rem #000000);
-    border-radius:1.25rem;
+.score-section{
+    display: none;
+}
+
+.score-section:target{
+    display: flex;
+}
+
+.buttonx{
+    border: 0.125rem solid white;
+    background-color:#4A4E69;
+    color: white;
+    
+    border-radius:1rem;
+    font-size:1.5rem;
     font-weight: bold;
 
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+    padding: 1.2rem;
 }
-#rmv{
-    display:flex;
-    align-items:center;
-    justify-content: center;
-
+.buttonx-container{
     padding: 3rem;
-}
-#rmvacc:hover{
-    border:0.125rem solid rgb(0, 0, 0);
-    color: white;
-    background-color: rgb(150, 22, 22);
-    cursor: pointer;
-    filter:drop-shadow(0.6rem 0.6rem 0.6rem #ff0000);
-    box-shadow:0.1rem 0.1rem 0.1rem #000000,-0.1rem 0.1rem 0.1rem #000000;
-}
-
-#logo2{
-    width: 16rem;
-    border-radius:50%;
-    border:0.125rem solid rgb(0, 255, 51);
-    box-shadow:0.4rem 0.4rem 0.4rem #000000,-0.4rem 0.4rem 0.4rem #000000;
-}
-
-#div-logo{
-    justify-self: center;
-    align-self: center;
-}
-
-body:has(#rmvacc:hover) #logo2{
-    border:4px solid rgb(255, 0, 0);
-    filter:drop-shadow(0.6rem 0.6rem 0.6rem #ff0000);
 }

@@ -15,6 +15,9 @@ body{
     justify-content: center;
     align-items: center;
 }
+html {
+    scroll-behavior: smooth;
+}
 .content{
     height: 60%;
     width: 60%;

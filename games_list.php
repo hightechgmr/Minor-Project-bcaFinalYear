@@ -26,8 +26,9 @@
       </a>
     </header>
 
-     <div class="ourgames">
-
+    <h1 class="headings" style="color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Our Games:</h1>
+     <div class="ourgames" id="tictactoe">
           <div class="main-content">
                <div class="game-content">
                     <div class="game-img">
@@ -48,14 +49,14 @@
                     <a href="tictactoe.php" class="button">
                          PLAY NOW
                     </a>
-                    <a href="score.php" class="button">
+                    <a href="scorecard_page.php#tictactoe" class="button">
                          PAST SCORES
                     </a>
                </div>
           </div>
      </div>
 
-     <div class="ourgames">
+     <div class="ourgames" id="8PuzzleProblem">
 
           <div class="main-content">
                <div class="game-content">
@@ -74,7 +75,7 @@
                     <a href="eight_puzzle.php" class="button">
                          PLAY NOW
                     </a>
-                    <a href="score.php" class="button">
+                    <a href="scorecard_page.php#8PuzzleProblem" class="button">
                          PAST SCORES
                     </a>
                </div>

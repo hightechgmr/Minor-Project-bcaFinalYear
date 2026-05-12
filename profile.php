@@ -70,6 +70,7 @@ if ($scoreResult) {
     <header>
        <nav class="navigation">
         <a href="indexafterlogin.php">Home</a>
+        <a href="games_list.php">Our Games</a>
         <a href="rule.php">Game Rules</a>
         <a href="score.php">Scorecard</a> 
       </nav>    
