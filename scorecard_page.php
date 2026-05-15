@@ -27,7 +27,7 @@ if (!$conn) {
 
 $user = $_SESSION['user'];
 
-$scoreSql = "SELECT * FROM scorecard WHERE user_name = ?";
+$scoreSql = "SELECT * FROM scorecard WHERE BINARY user_name = ?";
 $scoreStmt = mysqli_prepare($conn, $scoreSql);
 mysqli_stmt_bind_param($scoreStmt, 's', $user);
 mysqli_stmt_execute($scoreStmt);
