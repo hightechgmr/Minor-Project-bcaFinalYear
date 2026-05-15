@@ -1,0 +1,343 @@
+/*Media tag for index page*/
+@media (max-width: 850px) {
+    header{
+        flex-wrap: wrap-reverse;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+    }
+
+    .game-card{
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 750px) {
+    .navigation{
+        flex-direction: column;
+        height: fit-content;
+        gap: 2rem;
+    }
+
+    nav a{
+        flex: 0 0 calc(50% -5px);
+    }
+}
+
+@media (max-width: 600px) {
+    .game-card section h1{
+        font-weight: bolder;
+        font-size: 1rem;
+        text-decoration: underline;
+    }
+    .game-card li{
+     font-size: 1rem;
+    }
+}
+
+/*Media tag for Our Games page*/
+
+@media (max-width: 700px) {
+     .content-ourgames{
+          flex-direction: column;
+     }
+}
+
+@media (max-width: 500px) {
+     .buttons{
+          flex-direction: column;
+          gap: 1rem;
+          width: auto;
+          align-items: center;
+     }
+     .button{
+          min-width: 10rem;
+     }
+     .headings{
+          font-size: 2.3rem;
+          padding-bottom: 0rem;
+     }
+}
+
+@media (max-width: 400px) {
+     .game-img img{
+          width: 16rem;
+     }
+}
+
+@media (max-width: 300px) {
+     .game-img img{
+          width: 12rem;
+     }
+     .button{
+          min-width: 6rem;
+          font-weight: 100;
+          font-size: small;
+     }
+     .game-content-ourgames p{
+          font-size: 1.6rem;
+          padding-bottom: 0rem;
+     }
+}
+
+/*Media tag for rules page*/
+
+@media (max-width: 700px) {
+     .rules-head{
+          flex-direction: column;
+     }
+     .logo-rules{
+          width: 40%;
+     }
+     .rule{
+          padding: 1rem 1rem 1rem 2.5rem;
+     }
+}
+
+@media (max-width: 400px) {
+     .rule{
+          padding: 1rem 1rem 1rem 2rem;
+     }
+}
+
+/*Media tag for Profile page*/
+
+@media (max-width: 750px) {
+     #frm-table tr{
+          flex-direction: column;
+     }
+     #frm-table td{
+          padding: 1rem;
+     }
+     #frm-table{
+          font-size: 2.5rem;
+     }
+}
+
+@media (max-width: 350px) {
+     #malepic{
+          height: auto;
+          width: 70%;
+     }
+     #frm-table{
+          font-size: 1.5rem;
+     }
+     #frm-table td input{
+          min-width: none;
+     }
+     #frm-table td input{
+          font-size: 1rem;
+     }
+     #logo2{
+          width: 70%;
+     }
+}
+
+/*Media tag for Scorecard Tables*/
+
+@media (max-width: 1370px) {
+     .score-page-table th{
+          font-size: 1.5rem;
+          padding: 1.5rem;
+     }
+     .score-page-table td{
+          padding: 1rem;
+     }
+}
+@media (max-width: 1030px) {
+     .score-page-table th{
+          font-size: 1rem;
+          padding: 1rem;
+     }
+     .score-page-table td{
+          font-size: 1.5rem;
+     }
+}
+@media (max-width: 800px) {
+     .score-page-table th{
+          font-size: 1rem;
+          padding: 1rem;
+     }
+     .score-page-table td{
+          font-size: 1.2rem;
+     }
+}
+@media (max-width: 750px) {
+     .score-page-table th{
+          font-size: 1rem;
+          padding: 0.5rem;
+     }
+     .score-page-table td{
+          font-size: 1rem;
+          padding: 0.5rem;
+     }
+     .buttonx{
+          padding: 1rem;
+          font-size: 1.2rem;
+     }
+}
+@media (max-width: 570px) {
+     .score-section{
+          overflow-x: auto;
+     }
+     .score-page-table th{
+          font-size: 0.7rem;
+          padding: 0.1rem;
+     }
+     .score-page-table td{
+          font-size: 0.9rem;
+          padding: 0.1rem;
+     }
+     .buttonx{
+          padding: 0.5rem;
+          font-size: 1rem;
+          border-radius: 0.5rem;
+     }
+}
+@media (max-width: 370px) {
+     .score-page-table{
+          margin: 0rem 4rem 0rem 12rem;
+     }
+     .score-page-table th{
+          font-size: 0.7rem;
+          padding: 0.1rem;
+     }
+     .score-page-table td{
+          font-size: 0.9rem;
+          padding: 0.1rem;
+     }
+     .buttonx{
+          padding: 0.3rem;
+          font-size: 0.5rem;
+          border-radius: 0.2rem;
+     }
+     .buttonx-container{
+          padding: 0.5rem 0.5rem 3rem 0.5rem;
+     }
+}
+
+
+/*Media Tag for login/signup page*/
+
+@media (max-width: 1050px) {
+     #pic-login{
+          width: 40%;
+          min-width: 40%;
+
+          flex: 0 0 40%;
+     }
+}
+@media (max-width: 850px) {
+     #pic-login{
+          display: none;
+     }
+     #form{
+          width: 100%;
+          height: fit-content;
+     }
+
+}
+@media (max-width: 600px) {
+     .content-login{
+          height: fit-content;
+     }
+     table tr{
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+     }
+     #buttons-login-container{
+          padding-top: 1rem;
+     }
+}
+@media (max-width: 380px) {
+     .headings{
+          font-size: 2rem;
+          text-decoration: none;
+     }
+     label{
+          font-size: 1rem;
+     }
+     table tr{
+          gap: 0rem;
+     }
+     #username,#userpswd,#gender{
+          padding: 0;
+          font-size: 0.8rem;
+     }
+     #lin{
+          font-size: 1rem;
+          height: 2rem;
+          width: 5rem;
+     }
+}
+
+/*Media tag for games*/
+
+@media (max-width: 850px) {
+    .game-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    #topic {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .status-box {
+        font-size: 1.35rem;
+    }
+}
+@media (max-width: 700px) {
+    .mode-button{
+          min-width: none;
+          width: 50%;
+          font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 850px) {
+     .game-wrapper{
+          flex-direction: column-reverse;
+          gap: 2rem;
+     }
+     .panel-scorecard{
+          padding: 0.5rem;
+     }
+}
+
+@media (max-width: 520px) {
+    .game-actions {
+        flex-direction: column;
+    }
+
+    .action-button {
+        width: 100%;
+    }
+
+    .panel {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+     table tr{
+          gap: 0rem;
+     }
+     tbody{
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+     }
+}
+
+@media (max-width: 400px) {
+    .mode-button{
+          width: 90%;
+          font-size: 0.5rem;
+    }
+    .modes{
+          min-width: none;
+          padding: 1rem;
+    }
+}

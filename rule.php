@@ -5,7 +5,9 @@ if(isset($_SESSION['user'])){?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <title>Rules for the game</title>
 </head>
 <body>
@@ -23,19 +25,19 @@ if(isset($_SESSION['user'])){?>
     </header>
 
 
-    <content class="content">
-        <div class="head">
-            <div class="topic">Game Rules: </div>
-            <div class="div-logo">
-                <img src="images/logo.jpeg" alt="logo" class="logo">
+    <content class="rules-content">
+        <div class="rules-head">
+            <div class="headings">Game Rules: </div>
+            <div class="div-logo-rules">
+                <img src="images/logo.jpeg" alt="logo" class="logo-rules">
             </div>
         </div>
 
         <div class="rule">
-            <div class="head-content">
-                <div class="headings">Tic-Tac-Toe</div>
+            <div class="head-content-rules">
+                <div class="headings2">Tic-Tac-Toe</div>
 
-                <a href="tictactoe.php" class="playnow">
+                <a href="tictactoe.php" class="playnowbutton">
                     Play Now
                 </a>
             </div>
@@ -60,10 +62,10 @@ if(isset($_SESSION['user'])){?>
         </div>
 
         <div class="rule">
-            <div class="head-content">
-                <div class="headings">8-Puzzle Problem</div>
+            <div class="head-content-rules">
+                <div class="headings2">8-Puzzle Problem</div>
 
-                <a href="eight_puzzle.php" class="playnow">
+                <a href="eight_puzzle.php" class="playnowbutton">
                     Play Now
                 </a>
             </div>

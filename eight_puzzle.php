@@ -107,8 +107,9 @@ if ($requestMethod === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <title>8 Puzzle Game</title>
 </head>
 <body>
@@ -125,8 +126,8 @@ if ($requestMethod === 'POST') {
         </a>
     </header>
 
-    <main class="content">
-        <div class="head">
+    <main class="content-games">
+        <div class="head-games">
             <div class="headings" style="color: black;">8 Puzzle Game</div>
         </div>
 

@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <title>Login</title>
 </head>
 <body>
-        <div class="content">
-            <div id="pic">
+        <div class="content-login">
+            <div id="pic-login">
                 <img src="images/play.png" alt="tic tac toe">
             </div>
 
@@ -54,9 +55,9 @@
                                 don't have an account?
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="buttons-login-container">
                             <td colspan="2" style="padding: 0.01rem;">
-                                <a href="signup.php" class="buttons">SignUp</a>
+                                <a href="signup.php" class="buttons-login">SignUp</a>
                             </td>
                         </tr>
                     </table>

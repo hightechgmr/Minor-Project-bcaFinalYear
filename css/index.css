@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing:border-box;
 }
 body{
     background-color:#C9ADA7;
@@ -11,6 +12,7 @@ html {
     scroll-behavior: smooth;
 }
 
+/*Header*/
 header{
     display: flex;
     justify-content: center;
@@ -18,37 +20,41 @@ header{
     background-color: #4A4E69;
 }
 
+/*Navigation Bar*/
 .navigation{
-     display: flex;
-     justify-content: space-evenly;
-     align-items: center;
-     
-     height:7rem;
-     background-color:#4A4E69;
-     width:100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+    height:7rem;
+    background-color:#4A4E69;
+    width:100%;
+
+    padding: 1rem 0.5rem 1rem 0rem;
 }
 
 nav a{
-     background-color:#F2E9E4;
+    background-color:#F2E9E4;
 
-     border:0.125rem solid black;
-     border-radius:0.625rem;
-     text-decoration: none;
+    border:0.125rem solid black;
+    border-radius:0.625rem;
+    text-decoration: none;
 
-     display: flex;
-     justify-content: center;
-     align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-     font-size:1rem;
-     font-weight: bold;
-     color: #000000;
+    font-size:1rem;
+    font-weight: bold;
+    color: #000000;
     
-     height:3.125rem;
-     width:11.25rem;
+    height:3.125rem;
+    width:11.25rem;
      
     filter:drop-shadow(0.313rem 0.313rem 0.313rem #212121);
 }
 
+/*Button for current page*/
 .current-page{
     background-color: white;
     filter:drop-shadow(0.313rem 0.313rem 0.313rem #000000);
@@ -65,11 +71,16 @@ nav a:hover{
 
 }
 
-#profile{
-    max-height: 3.5rem;
-    border-radius: 100%;
+/*profile icon*/
+.profile-container{
     padding: 1rem;
 }
+#profile{
+    max-height: 4rem;
+    border-radius: 100%;
+    padding: 0rem;
+}
+
 
 .middle{
     background-color: #c9ada7;
@@ -85,7 +96,15 @@ nav a:hover{
     align-items: center;
     justify-content: space-evenly;
 
-    padding: 0rem 1rem 1rem 1rem;
+    padding: 0rem 0rem 1rem 0rem;
+}
+
+/*Website Logo*/
+#logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #logo img{
@@ -95,6 +114,8 @@ nav a:hover{
 
     padding: 1rem;
 }
+
+
 .about{
     display: flex;
     flex-direction: column;
@@ -118,6 +139,7 @@ nav a:hover{
     margin-bottom: 6rem;   
 }
 
+/*Game Card*/
 .game-card-link{
     text-decoration: none;
     display: block;
@@ -171,68 +193,75 @@ nav a:hover{
     max-width: 40%;
 }
 
+/*----------------------------------------------------------*/
 
 .headings{
     padding: 1rem;
-    font-size: 2.3rem;
+    font-size: 3.5rem;
     font-weight: bolder;
     color: black;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
     text-align: center;
 }
 
-.main-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    padding: 1rem 1rem;
-    
-    
+.headings2{
+    font-size: 3rem;
+    font-weight: bolder;
+    color: white;
+    text-align: center;
+    padding: 1rem;
 }
 
+/*Code for Our Games page*/
+
 .ourgames{
+    padding: 1rem;
     align-items: center;
     background-color: #9a8c98;
     
     border: 0.123rem solid black;
-
+    
     width: 85%;
     
     justify-self: center;
     align-self: center;
 
-    margin-top: 2rem;
-    margin-bottom: 5rem;
-
-}
-
-.game-content{
-    color: #F2E9E4;
-    display: flex;
-    flex-direction: row-reverse;
-
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 1rem;
+    margin: 1rem 0rem 5rem 0rem;
     
 }
 
-.content{
-    justify-self: flex-start;
-    align-self: flex-start;
+.game-content-ourgames{
+    color: #F2E9E4;
+    padding: 1rem;
+}
+
+.game-content-ourgames p{
+    font-size: 2rem;
+    max-width: 85%;
+
+    padding: 1rem;
+}
+
+.content-ourgames{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+
+    align-items: center;
+    justify-content: center;
 }
 
 .game-img img{
     width: 20rem;
 }
 
-.game-content p{
-    font-size: 2rem;
-    max-width: 85%;
 
+/*Code for buttons*/
+
+.buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
     padding: 1rem;
 }
 
@@ -244,7 +273,8 @@ nav a:hover{
     border-radius:1rem;
     font-size:1.5rem;
     font-weight: bold;
-
+    text-align: center;
+    
     text-decoration: none;
     padding: 1.2rem;
 }
@@ -258,14 +288,7 @@ nav a:hover{
     font-size: 1.4rem;
 }
 
-.buttons{
-    display: flex;
-    justify-content: space-evenly;
-    padding: 1rem;
-
-    min-width: 50rem;
-}
-
+/*footer*/
 .fotter{
     position: fixed;
     height:3.8rem;

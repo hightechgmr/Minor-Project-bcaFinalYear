@@ -6,14 +6,11 @@ if(isset($_SESSION['user'])){?>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashbord</title>
   <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link
-    rel="stylesheet"
-    href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
-  />
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
+<!--The header section-->
   <header>
     <nav class="navigation">
       <a class="current-page">Home</a>
@@ -27,7 +24,7 @@ if(isset($_SESSION['user'])){?>
     </a>
   </header>
 
-    
+<!--The About section-->
   <div class="middle">
     <div class="home">
       <div id="logo">
@@ -47,6 +44,8 @@ if(isset($_SESSION['user'])){?>
     </div>
     <hr/>
   </div>
+
+<!--The Bottom section-->
 
   <div class="bottom">
     <h1 class="headings">Checkout Our Games</h1>

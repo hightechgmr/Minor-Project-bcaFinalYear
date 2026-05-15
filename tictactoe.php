@@ -236,8 +236,9 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <title>Tic Tac Toe</title>
 </head>
 <body>
@@ -254,9 +255,9 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
         </a>
     </header>
 
-    <main class="content">
-        <div class="head">
-            <div class="headings" style="color: black;">Tic Tac Toe</div>
+    <main class="content-games">
+        <div class="head-games">
+            <div class="headings">Tic Tac Toe</div>
         </div>
 
         <?php if (!$game['mode']) { ?>
@@ -279,7 +280,7 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
                     </form>
                 </div>
             </section>
-        <?php } else { ?>
+            <?php } else { ?>
             <section class="game-wrapper">
                 <div class="panel-scorecard">
                     <h2>Head to Head</h2>
@@ -351,6 +352,36 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
     <div class="fotter"></div>
 
     <script>
+        
+// SAVE SCROLL POSITION
+    document.querySelectorAll("form").forEach((form) => {
+        form.addEventListener("submit", () => {
+            sessionStorage.setItem(
+                "scrollPosition",
+                window.pageYOffset
+            );
+        });
+    });
+
+    // RESTORE SCROLL POSITION
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const scrollPosition = sessionStorage.getItem("scrollPosition");
+
+        if (scrollPosition !== null) {
+
+            setTimeout(() => {
+                window.scrollTo({
+                    top: parseInt(scrollPosition),
+                    behavior: "instant"
+                });
+            }, 0);
+
+        }
+
+    });
+
+    
         const twoPlayerForm = document.getElementById("twoPlayerForm");
         const player2NameInput = document.getElementById("player2NameInput");
 
@@ -389,21 +420,6 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
             }, 250);
         }
 
-        // Save scroll position before form submit
-    document.querySelectorAll("form").forEach(function(form) {
-        form.addEventListener("submit", function() {
-            sessionStorage.setItem("scrollPos", window.scrollY);
-        });
-    });
-
-    // Restore scroll position after reload
-    window.addEventListener("load", function() {
-        const scrollPos = sessionStorage.getItem("scrollPos");
-
-        if (scrollPos !== null) {
-            window.scrollTo(0, parseInt(scrollPos));
-        }
-    });
     </script>
 </body>
 </html>
