@@ -13,6 +13,21 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
 
 $playerName = $_SESSION['user'];
 
+function start_eight_puzzle_session() {
+    if (empty($_SESSION['eight_puzzle_game_id'])) {
+        $_SESSION['eight_puzzle_game_id'] = bin2hex(random_bytes(16));
+    }
+
+    $_SESSION['eight_puzzle_active'] = true;
+    unset($_SESSION['eight_puzzle_quit']);
+}
+
+function clear_eight_puzzle_session() {
+    unset($_SESSION['eight_puzzle_game_id']);
+    unset($_SESSION['eight_puzzle_active']);
+    $_SESSION['eight_puzzle_quit'] = true;
+}
+
 function db_connection() {
     if (!function_exists('mysqli_connect')) {
         return false;
@@ -79,11 +94,32 @@ $requestMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 if ($requestMethod === 'POST') {
     $action = $_POST['action'] ?? '';
 
+    if ($action === 'quit') {
+        clear_eight_puzzle_session();
+        session_write_close();
+        header("Location: games_list.php");
+        exit();
+    }
+
     if ($action === 'save_score') {
         header('Content-Type: application/json');
 
         $moves = isset($_POST['moves']) ? (int)$_POST['moves'] : 0;
         $timeSeconds = isset($_POST['time_seconds']) ? (int)$_POST['time_seconds'] : 0;
+        $gameId = $_POST['game_id'] ?? '';
+
+        if (
+            empty($_SESSION['eight_puzzle_active']) ||
+            !empty($_SESSION['eight_puzzle_quit']) ||
+            empty($_SESSION['eight_puzzle_game_id']) ||
+            !hash_equals($_SESSION['eight_puzzle_game_id'], $gameId)
+        ) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Game session is no longer active.'
+            ]);
+            exit();
+        }
 
         if ($moves <= 0 || $timeSeconds < 0) {
             echo json_encode([
@@ -101,6 +137,8 @@ if ($requestMethod === 'POST') {
         exit();
     }
 }
+
+start_eight_puzzle_session();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -157,6 +195,10 @@ if ($requestMethod === 'POST') {
                     <button type="button" class="action-button" id="startBtn">Start Game</button>
                     <button type="button" class="action-button" id="restartBtn">Restart</button>
                     <button type="button" class="action-button" id="shuffleBtn">Shuffle</button>
+                    <form method="post" id="quitForm">
+                        <input type="hidden" name="action" value="quit">
+                        <button type="submit" class="action-button" id="quitBtn">Quit</button>
+                    </form>
                 </div>
             </div>
 
@@ -192,6 +234,7 @@ if ($requestMethod === 'POST') {
     <script>
         window.eightPuzzleConfig = {
             saveUrl: "eight_puzzle.php",
+            gameId: <?php echo json_encode($_SESSION['eight_puzzle_game_id']); ?>,
             playerName: <?php echo json_encode($playerName); ?>
         };
     </script>
