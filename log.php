@@ -7,7 +7,7 @@
     <title>Insert register data</title>
 </head>
 <body>
-        <?php 
+       <?php 
             $conn=mysqli_connect("localhost","root","","tictactoe");
             if($conn===false){
                 die("ERROR:could not connect.".mysqli_connect_error());
@@ -17,25 +17,19 @@
             
             $usrname = preg_replace('/\s+/','',$usrname);
 
-            // BINARY makes username and password checks case-sensitive.
-            $sql1="SELECT * FROM users WHERE BINARY username = ? AND BINARY password = ?";
+            $sql1="SELECT username, password FROM users WHERE BINARY username = ?";
             $stmt=mysqli_prepare($conn,$sql1);
-            mysqli_stmt_bind_param($stmt,"ss",$usrname,$psswrd);
+            mysqli_stmt_bind_param($stmt,"s",$usrname);
             mysqli_stmt_execute($stmt);
             $result=mysqli_stmt_get_result($stmt);
-            $val= $result->num_rows;
+            $row=mysqli_fetch_assoc($result);
 
 
-            if($val==1){
-            $row=mysqli_fetch_array($result);   
-                    $sql="INSERT INTO login_status (username,password) values ('$usrname','$psswrd')";
-                    if(mysqli_query($conn,$sql)){
-                        $_SESSION['user']=$usrname;
-                        header("Location:indexafterlogin.php");
-                        exit();
-                    }else{
-                        echo("error.".mysqli_error($conn)); 
-                    }
+            if($row && password_verify($psswrd, $row['password'])){
+                $_SESSION['user']=$row['username'];
+                $_SESSION['username']=$row['username'];
+                header("Location:indexafterlogin.php");
+                exit();
             }
             else{
                 header("Location: login.php?error=wrong");
