@@ -40,10 +40,14 @@ if (!$result) {
 $eightPuzzleSql = "
     SELECT user_name, moves, time_seconds
     FROM eight_puzzle_scorecard
+    WHERE BINARY user_name = ?
     ORDER BY time_seconds ASC, moves ASC
     LIMIT 5
 ";
-$eightPuzzleResult = mysqli_query($conn, $eightPuzzleSql);
+$eightPuzzleStmt = mysqli_prepare($conn, $eightPuzzleSql);
+mysqli_stmt_bind_param($eightPuzzleStmt, 's', $user);
+mysqli_stmt_execute($eightPuzzleStmt);
+$eightPuzzleResult = mysqli_stmt_get_result($eightPuzzleStmt);
 ?>
 
 <!DOCTYPE html>
