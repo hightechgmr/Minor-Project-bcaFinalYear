@@ -2,6 +2,10 @@
 session_start();
 
 
+if (!isset($_SESSION['user']) && isset($_SESSION['username'])) {
+    $_SESSION['user'] = $_SESSION['username'];
+}
+
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit();
@@ -18,14 +22,20 @@ if (!$conn) {
 $user = $_SESSION['user'];
 
 
-//  USER DATA 
-$userQuery = "SELECT username, gender FROM users WHERE username='$user'";
-$userResult = mysqli_query($conn, $userQuery);
+//  USER DATA
+$userQuery = "SELECT username, gender FROM users WHERE BINARY username = ?";
+$userStmt = mysqli_prepare($conn, $userQuery);
+mysqli_stmt_bind_param($userStmt, "s", $user);
+mysqli_stmt_execute($userStmt);
+$userResult = mysqli_stmt_get_result($userStmt);
 
 if ($userResult && mysqli_num_rows($userResult) > 0) {
     $userData = mysqli_fetch_assoc($userResult);
     $username = $userData['username'];
     $gender = $userData['gender'];
+    $_SESSION['user'] = $username;
+    $_SESSION['username'] = $username;
+    $user = $username;
 } else {
     $username = "Not Found";
     $gender = "Not Found";
@@ -38,11 +48,14 @@ SELECT
     COALESCE(SUM(total_matches),0) AS total_matches,
     COALESCE(SUM(won),0) AS won,
     COALESCE(SUM(lost),0) AS lost
-FROM scorecard 
-WHERE user_name='$user'
+FROM scorecard
+WHERE BINARY user_name = ?
 ";
 
-$scoreResult = mysqli_query($conn, $scoreQuery);
+$scoreStmt = mysqli_prepare($conn, $scoreQuery);
+mysqli_stmt_bind_param($scoreStmt, "s", $user);
+mysqli_stmt_execute($scoreStmt);
+$scoreResult = mysqli_stmt_get_result($scoreStmt);
 
 if ($scoreResult) {
     $scoreData = mysqli_fetch_assoc($scoreResult);
@@ -56,6 +69,7 @@ if ($scoreResult) {
     $lost = 0;
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -89,9 +103,9 @@ if ($scoreResult) {
         </div>
 
         <table id="frm-table">
-            <tr>
+             <tr>
                 <td>User Name:</td>
-                <td><input type="text" value="<?php echo $username; ?>" readonly></td>
+                <td><input type="text" value="<?php echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8'); ?>" style="text-transform: none;" readonly></td>
             </tr>
             <tr>
                 <td>Gender:</td>
