@@ -5,6 +5,7 @@
     const startBtn = document.getElementById("startBtn");
     const restartBtn = document.getElementById("restartBtn");
     const shuffleBtn = document.getElementById("shuffleBtn");
+    const quitForm = document.getElementById("quitForm");
     const timerElement = document.getElementById("timer");
     const moveCountElement = document.getElementById("moveCount");
     const gameStatusElement = document.getElementById("gameStatus");
@@ -19,6 +20,7 @@
     let elapsedSeconds = 0;
     let moves = 0;
     let scoreSaved = false;
+    let quitting = false;
 
     function pad(value) {
         return String(value).padStart(2, "0");
@@ -211,7 +213,7 @@
     }
 
     function saveScore() {
-        if (scoreSaved) {
+        if (scoreSaved || quitting) {
             return;
         }
 
@@ -219,6 +221,7 @@
 
         const formData = new FormData();
         formData.append("action", "save_score");
+        formData.append("game_id", window.eightPuzzleConfig.gameId || "");
         formData.append("moves", String(moves));
         formData.append("time_seconds", String(elapsedSeconds));
 
@@ -245,6 +248,15 @@
     shuffleBtn.addEventListener("click", function () {
         shuffleGame(gameActive);
     });
+
+    if (quitForm) {
+        quitForm.addEventListener("submit", function () {
+            quitting = true;
+            gameActive = false;
+            stopTimer();
+            scoreSaved = true;
+        });
+    }
 
     closeWinBtn.addEventListener("click", function () {
         winMessage.hidden = true;
