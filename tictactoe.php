@@ -92,7 +92,7 @@ function fetch_score($playerName, $opponentName) {
         return $stats;
     }
 
-    $sql = "SELECT total_matches, won, lost FROM scorecard WHERE user_name = ? AND against = ? AND game_name = 'tictactoe'";
+    $sql = "SELECT total_matches, won, lost FROM scorecard WHERE BINARY user_name = ? AND BINARY against = ? AND game_name = 'tictactoe'";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, 'ss', $playerName, $opponentName);
     mysqli_stmt_execute($stmt);
@@ -120,14 +120,14 @@ function save_score($playerName, $opponentName, $result) {
     $won = $result === 'win' ? 1 : 0;
     $lost = $result === 'loss' ? 1 : 0;
 
-    $checkSql = "SELECT `s.no` FROM scorecard WHERE user_name = ? AND against = ? AND game_name = 'tictactoe'";
+    $checkSql = "SELECT `s.no` FROM scorecard WHERE BINARY user_name = ? AND BINARY against = ? AND game_name = 'tictactoe'";
     $checkStmt = mysqli_prepare($conn, $checkSql);
     mysqli_stmt_bind_param($checkStmt, 'ss', $playerName, $opponentName);
     mysqli_stmt_execute($checkStmt);
     $checkResult = mysqli_stmt_get_result($checkStmt);
 
     if (mysqli_num_rows($checkResult) > 0) {
-        $updateSql = "UPDATE scorecard SET total_matches = total_matches + 1, won = won + ?, lost = lost + ? WHERE user_name = ? AND against = ? AND game_name = 'tictactoe'";
+        $updateSql = "UPDATE scorecard SET total_matches = total_matches + 1, won = won + ?, lost = lost + ? WHERE BINARY user_name = ? AND BINARY against = ? AND game_name = 'tictactoe'";
         $updateStmt = mysqli_prepare($conn, $updateSql);
         mysqli_stmt_bind_param($updateStmt, 'iiss', $won, $lost, $playerName, $opponentName);
         mysqli_stmt_execute($updateStmt);
