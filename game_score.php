@@ -24,7 +24,7 @@ function clean_opponent($opponent) {
 
 function fetch_stats($conn, $user, $opponent, $game_name) {
     $sql = "SELECT total_matches, won, lost FROM scorecard
-            WHERE user_name = ? AND against = ? AND game_name = ?";
+            WHERE BINARY user_name = ? AND BINARY against = ? AND game_name = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, 'sss', $user, $opponent, $game_name);
     mysqli_stmt_execute($stmt);
@@ -82,7 +82,7 @@ $lost = $result === 'loss' ? 1 : 0;
 
 // Draws are stored implicitly as total_matches - won - lost to keep the current table structure.
 $check_sql = "SELECT `s.no` FROM scorecard
-              WHERE user_name = ? AND against = ? AND game_name = ?";
+              WHERE BINARY user_name = ? AND BINARY against = ? AND game_name = ?";
 $check_stmt = mysqli_prepare($conn, $check_sql);
 mysqli_stmt_bind_param($check_stmt, 'sss', $user, $opponent, $game_name);
 mysqli_stmt_execute($check_stmt);
@@ -93,7 +93,7 @@ if (mysqli_num_rows($check_result) > 0) {
                    SET total_matches = total_matches + 1,
                        won = won + ?,
                        lost = lost + ?
-                   WHERE user_name = ? AND against = ? AND game_name = ?";
+                   WHERE BINARY user_name = ? AND BINARY against = ? AND game_name = ?";
     $update_stmt = mysqli_prepare($conn, $update_sql);
     mysqli_stmt_bind_param($update_stmt, 'iisss', $won, $lost, $user, $opponent, $game_name);
 
