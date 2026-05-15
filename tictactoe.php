@@ -158,6 +158,10 @@ function finish_game(&$game, $winner, $playerName) {
     }
 }
 
+function clear_tictactoe_session() {
+    unset($_SESSION['tictactoe_game']);
+}
+
 if (!isset($_SESSION['tictactoe_game'])) {
     $_SESSION['tictactoe_game'] = default_game_state();
 }
@@ -166,7 +170,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     $game = $_SESSION['tictactoe_game'];
 
-    if ($action === 'choose_mode') {
+    if ($action === 'quit') {
+        clear_tictactoe_session();
+        session_write_close();
+        header("Location: games_list.php");
+        exit();
+    } elseif ($action === 'choose_mode') {
         $mode = $_POST['mode'] ?? '';
         $nextGame = default_game_state(in_array($mode, ['computer', 'two_player'], true) ? $mode : null);
 
@@ -316,6 +325,10 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
                             <input type="hidden" name="action" value="change_mode">
                             <button type="submit" class="action-button">Change Mode</button>
                         </form>
+                        <form method="post" id="quitForm">
+                            <input type="hidden" name="action" value="quit">
+                            <button type="submit" class="action-button" id="quitBtn">Quit</button>
+                        </form>
                     </div>
                 </div>
 
@@ -410,14 +423,25 @@ $computerThinking = $game['mode'] === 'computer' && $game['status'] === 'playing
         const board = document.querySelector(".board");
 
         // Computer mode delay: show the user's move immediately, pause for 1 second, then let O play.
+        let computerMoveTimerId = null;
+        const quitForm = document.getElementById("quitForm");
+
         if (computerMoveForm && board?.dataset.computerThinking === "true") {
             document.querySelectorAll(".cell").forEach(function (cell) {
                 cell.disabled = true;
             });
 
-            setTimeout(function () {
+            computerMoveTimerId = setTimeout(function () {
                 computerMoveForm.submit();
             }, 250);
+        }
+
+        if (quitForm) {
+            quitForm.addEventListener("submit", function () {
+                if (computerMoveTimerId !== null) {
+                    window.clearTimeout(computerMoveTimerId);
+                }
+            });
         }
 
     </script>
