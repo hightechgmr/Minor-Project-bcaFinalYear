@@ -52,6 +52,8 @@ $eightPuzzleResult = mysqli_query($conn, $eightPuzzleSql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <title>scorecard</title>
 </head>
 <body>
@@ -68,27 +70,24 @@ $eightPuzzleResult = mysqli_query($conn, $eightPuzzleSql);
       </a>
     </header>
 
-    <main class="content">
-        <div class="head">
-            <div class="headings" style="color: black; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">ScoreCard:</div>
-        </div>
-
+    <main class="content-scorecard-tables">
         <section class="score-section" id="tictactoe">
-            <div class="score-heading">Tic Tac Toe Scorecard</div>
-            <div class="table-wrap">
-                <table id="table" class="score-page-table">
-                    <tr>
-                        <th>S.No.</th>
-                        <th>Game Name</th>
-                        <th>Username</th>
-                        <th>Opponent</th>
-                        <th>Total Matches</th>
-                        <th>Won</th>
-                        <th>Lost</th>
-                        <th>Draws</th>
-                    </tr>
+            <div class="headings">
+                Tic Tac Toe Scorecard
+            </div>
+            <table class="score-page-table">
+                <tr>
+                    <th>S.No.</th>
+                    <th>Game Name</th>
+                    <th>Username</th>
+                    <th>Opponent</th>
+                    <th>Total Matches</th>
+                    <th>Won</th>
+                    <th>Lost</th>
+                    <th>Draws</th>
+                </tr>
 
-                    <?php
+                <?php
                     $sn = 1;
 
                     if (mysqli_num_rows($result) > 0) {
@@ -108,30 +107,30 @@ $eightPuzzleResult = mysqli_query($conn, $eightPuzzleSql);
                                 <td>" . $draws . "</td>
                             </tr>";
                         }
-                    } else {
+                    } 
+                    else {
                         echo "<tr><td colspan='8'>No records found</td></tr>";
                     }
-                    ?>
-                </table>
-            </div>
-            <div class="buttonx-container ">
+                ?>
+            </table>
+            <div class="buttonx-container">
                 <a class="buttonx" href="score.php">Go Back</a>
             </div>
         </section>
 
-        <section class="score-section" id="8PuzzleProblem">
-            <div class="score-heading">8 Puzzle Game Best 5 Solves</div>
-            <div class="table-wrap">
-                <table class="score-page-table">
-                    <tr>
-                        <th>S.No</th>
-                        <th>Game Name</th>
-                        <th>Username</th>
-                        <th>Moves</th>
-                        <th>Time</th>
-                    </tr>
 
-                    <?php
+        <section class="score-section" id="8PuzzleProblem">
+            <div class="headings">8 Puzzle Game Best 5 Solves</div>
+            <table class="score-page-table">
+                <tr>
+                    <th>S.No</th>
+                    <th>Game Name</th>
+                    <th>Username</th>
+                    <th>Moves</th>
+                    <th>Time</th>
+                </tr>
+
+                <?php
                     $puzzleSn = 1;
 
                     if ($eightPuzzleResult && mysqli_num_rows($eightPuzzleResult) > 0) {
@@ -144,19 +143,20 @@ $eightPuzzleResult = mysqli_query($conn, $eightPuzzleSql);
                                 <td>" . format_score_time($row['time_seconds']) . "</td>
                             </tr>";
                         }
-                    } else {
+                    } 
+                    else {
                         echo "<tr><td colspan='5'>No records found</td></tr>";
                     }
-                    ?>
-                </table>
-            </div>
+                ?>
+            </table>
             <div class="buttonx-container ">
                 <a class="buttonx" href="score.php">Go Back</a>
             </div>
         </section>
     </main>
 
-    <div class="fotter"></div>
+    <div class="fotter">
+    </div>
 </body>
 </html>
 

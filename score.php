@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/all.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <title>scorecard</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
       </a>
     </header>
 
-    <h1 class="headings">Check Score</h1>
+    <h1 class="headings">Check Score(s)</h1>
      <div class="bottom">
 
           <a class="game-card-link" href="scorecard_page.php#tictactoe">

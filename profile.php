@@ -64,6 +64,8 @@ if ($scoreResult) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <title>Profile</title>
 </head>
 <body>
@@ -76,13 +78,13 @@ if ($scoreResult) {
       </nav>    
     </header>
 
-    <content class="content">
-        <div class="head2">
+    <content class="content-profile-page">
+        <div class="head-profile-page">
             <div id="profilepic">
                 <img src="images/profilemale.png" alt="profile pic" id="malepic">
             </div>
-            <div class="headings" style="color: black; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-                 Profile 
+            <div class="headings">
+                Profile 
             </div>
         </div>
 
