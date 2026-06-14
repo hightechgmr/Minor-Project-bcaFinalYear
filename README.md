@@ -101,7 +101,7 @@ project-root/
 5. Open your browser and run:
 
 ```text
-http://localhost/project-folder-name
+http://nostalgicgamingonline.infinityfree.io
 ```
 
 ---
